@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Inserção de horas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+</head>
+<body onload="folga(), diaHoje(), valorDia();">
+    <section>
+        <h1>Relatório Diário</h1>
+        <h2>dia</h2><h2 id="diaHoje"></h2>
+        <!--Inicio formulario-->
+            <input type="date" id="diaPadrao" name="dia" form="dados" required/>
+            <br/>
+            <label for="horas">Suas horas total do dia: </label>
+            <input type="number" id="hora" name="horas" form="dados" min="0" max="24" value="0" onblur="" required/><!--por aviso que se ficar em zero significa folga OK-->
+            <!--div onclick="maisHors();">Horas + </div-->
+            <br/>
+            <label for="minutos">Seus minutos avulsos do dia: </label>
+            <input type="number" id="minuto" name="minutos" min="0" max="60" form="dados" value="0"/><!--por caixinhas dinamicas para o usuario poder colocar seus minutos avulsos e ir adicionando até acabar, depois o programa recolhe tudo e soma e ja insere nos minutos ou nas horas se for adequado OK-->
+            <!--div onclick="maisMins();">Minutos + </div-->
+            <br/>
+            <div id="msg">0 horas e 0 minutos significa dia de folga</div>
+            <label for="revisitas">Total de revisitas do dia: </label>
+            <input type="number" id="revisita" name="revisitas" form="dados" value="0"/><!--por caixinhas dinamicas para o usuario poder ir colocando suas revisitas avulsas e ir adicionando até acabar, depois o programa recolhe tudo e soma e ja insere no campo adequado OK-->
+            <br/>
+            <!--div onclick="maisRev();">Revisitas + </div-->
+            <label for="revistas">Total de revistas: </label>
+            <input type="number" id="revista" name="revistas" form="dados" value="0"/><!--por caixinhas dinamicas para o usuario poder ir colocando suas revistas avulsas e ir adicionando até acabar, depois o programa recolhe tudo e soma e ja insere no campo adequado OK-->
+            <!--div onclick="maisRevis();">Revistas + </div-->
+            <br/>
+            <label for="livros">Total de livros: </label>
+            <input type="number" id="livro" name="livros" form="dados" value="0"/><!--por caixinhas dinamicas para o usuario poder ir colocando seus livros avulsas e ir adicionando até acabar, depois o programa recolhe tudo e soma e ja insere no campo adequado OK-->
+            <!--div onclick="maisLivr();">Livros + </div-->
+            <br/>
+            <label for="broxuras">Total de broxuras: </label>
+            <input type="number" id="broxura" name="broxuras" form="dados" value="0"/><!--por caixinhas dinamicas para o usuario poder ir colocando suas broxuras avulsas e ir adicionando até acabar, depois o programa recolhe tudo e soma e ja insere no campo adequado OK-->
+            <!--div onclick="maisBrox();">Broxuras + </div-->
+            <br/>
+            <label for="observacoes">Observações do dia: </label>
+            <textarea id="observacao" name="observacoes" placeholder="Opcional" value="" form="dados"></textarea>
+            <br/>
+            <form id="dados" method="GET" action="../back/controle/insercaoEntrada.php">
+                <input type="submit" id="envia" value="Enviar!"/>
+            <br/>
+            </form>
+        <!--Final formulario-->
+    </section>
+    <div id="msg-sucesso">Atualizado com sucesso!</div>
+</body>
+<script src="funcoes.js"></script>
+</html>

@@ -1,0 +1,16 @@
+@charset "utf8";
+input#id{
+    display: block;
+}
+input#dia{
+    display: block;
+}
+input#mes{
+    display: block;
+}
+div#msg-sucesso{
+    display: block;
+}
+select#escolhaId{
+    display: none;
+}
