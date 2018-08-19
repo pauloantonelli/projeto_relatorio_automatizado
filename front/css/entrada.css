@@ -1,15 +1,15 @@
 @charset "utf8";
 input#id{
-    display: block;
+    display: none;
 }
 input#dia{
-    display: block;
+    display: none;
 }
 input#mes{
-    display: block;
+    display: none;
 }
 div#msg-sucesso{
-    display: block;
+    display: none;
 }
 select#escolhaId{
     display: none;

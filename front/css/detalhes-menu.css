@@ -1,0 +1,27 @@
+@charset "utf8";
+/*cores menu lateral*/
+@media (max-width: 768px){
+    .mdl-layout-title{
+        background-color: #5169EA;
+        color: white;
+        text-align: center;
+    }
+    .mdl-layout__drawer .mdl-navigation .mdl-navigation__link{
+        background-color: #36469B;
+        color: white;
+        text-align: center;
+        font-weight: bold;
+    }
+    .mdl-layout__drawer .mdl-navigation .mdl-navigation__link:hover{
+        background-color: #000000;
+        color: white;
+        text-align: center;
+    }
+    .mdl-navigation hr{
+        padding: 0;
+        margin: 0;
+    }
+    .mdl-layout__drawer-button i{
+        color: white;
+    }
+}

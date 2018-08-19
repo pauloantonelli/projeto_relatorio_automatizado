@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Inserção de horas</title>
+    <title>Inserir relatório</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.purple-deep_purple.min.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="css/entrada.css"/>
     <link rel="stylesheet" href="css/reset-inicial.css"/>
     <link rel="stylesheet" href="css/estrutura-corpo.css"/>
-    
+    <link rel="stylesheet" href="css/detalhes-menu.css"/>
+    <!--link href="main.css?version=12"/--><!--engana o cache do navegador para atualizar sempre-->
     <style>
         .demo-layout-waterfall .mdl-layout__header-row .mdl-navigation__link:last-of-type  {
         padding-right: 0;
@@ -24,17 +25,34 @@
           <!-- Top row, always visible -->
           <div class="mdl-layout__header-row">
             <!-- Title -->
-            <span class="mdl-layout-title">Relatório do dia</span>
+            <span class="mdl-layout-title">Inserir relatório</span>
             <div class="mdl-layout-spacer"></div>
           </div>
         </header>
         <div class="mdl-layout__drawer">
-          <span class="mdl-layout-title">Relatório Diário</span>
+          <span class="mdl-layout-title">Inserir relatório</span>
           <nav class="mdl-navigation">
-            <a class="mdl-navigation__link" href="index.html">Relatório Diário</a>
-            <a class="mdl-navigation__link" href="cadastro-estudante.php">Novos Estudantes</a>
-            <a class="mdl-navigation__link" href="metas.html">Metas</a>
-            <a class="mdl-navigation__link" href="">Link4</a>
+                <a class="mdl-navigation__link" href="index.php">Consultar Relatório</a>
+                <hr/>
+                <a class="mdl-navigation__link" href="inserir-relatorio.html">Inserir relatório</a>
+                <hr/>
+                <a class="mdl-navigation__link" href="atualizacao-entrada.php">Editar registro relatório</a>
+                <hr/>
+                <a class="mdl-navigation__link" href="exclusao-entrada.php">Deletar registro relatório</a>
+                <hr/>
+    
+                <a class="mdl-navigation__link" href="cadastro-estudante.php">Editar/Cadastrar estudante</a>
+                <hr/>
+                <a class="mdl-navigation__link" href="atualizacao-estudantes.php">Editar Revisitas dos estudantes</a>
+                <hr/>
+                <a class="mdl-navigation__link" href="exclusao-estudante.php">Deletar cadastro estudante</a>
+                <hr/>
+    
+                <a class="mdl-navigation__link" href="atualizacao-metas.php">Atualizar metas(mês a mês)</a>
+                <hr/>
+    
+                <a class="mdl-navigation__link" href="feito-por.html">Feito por</a>
+                <hr/>
           </nav>
         </div>
         <main class="mdl-layout__content">
@@ -89,6 +107,6 @@
       </div>
 </body>
 <script src="funcoes.js"></script>
-<script src="/node_modules/material-design-lite/material.min.js"></script>
+<script src="../node_modules/material-design-lite/material.min.js"></script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </html>

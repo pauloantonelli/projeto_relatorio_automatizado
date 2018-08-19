@@ -1,8 +1,8 @@
 //pega e exibe o dia
-function diaHoje(){
+/*function diaHoje(){
 var dia = new Date().toDateString();
 document.getElementById('diaHoje').innerHTML = dia;
-}
+}*/
 //funcao que pega dia/mes/ano atual e autopreenche a data
 function valorDia(){
     var d = new Date();
@@ -33,7 +33,7 @@ function folga(){
 
 //exibe a mensagem de sucesso apos atualizar dados
 //var voltou = window.sessionStorage.getItem('pagina');
-var enviaBtn = document.getElementById('envia');
+var enviaBtn = document.getElementById('edita');
 var flag = false;
 //evento ativado pelo select > option, ativa a flag
 function flegear(){

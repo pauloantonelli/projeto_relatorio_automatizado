@@ -1,54 +1,102 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Inserção de horas</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.purple-deep_purple.min.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+        crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="css/entrada.css" />
+    <link rel="stylesheet" href="css/reset-inicial.css" />
+    <link rel="stylesheet" href="css/estrutura-corpo.css" />
+
+    <style>
+        .demo-layout-waterfall .mdl-layout__header-row .mdl-navigation__link:last-of-type {
+            padding-right: 0;
+        }
+    </style>
 </head>
-<body onload="folga(), diaHoje(), valorDia();">
-    <section>
-        <h1>Meta Mensal</h1>
-        <h2>dia</h2><h2 id="diaHoje"></h2>
-        <!--Inicio formulario-->
-            <input type="date" id="diaPadrao" name="dia" form="dados" required/>
-            <br/>
-            <label for="horas">Suas horas total do dia: </label>
-            <input type="number" id="hora" name="horas" form="dados" min="0" max="24" value="0" onblur="" required/><!--por aviso que se ficar em zero significa folga OK-->
-            <!--div onclick="maisHors();">Horas + </div-->
-            <br/>
-            <label for="minutos">Seus minutos avulsos do dia: </label>
-            <input type="number" id="minuto" name="minutos" min="0" max="60" form="dados" value="0"/><!--por caixinhas dinamicas para o usuario poder colocar seus minutos avulsos e ir adicionando até acabar, depois o programa recolhe tudo e soma e ja insere nos minutos ou nas horas se for adequado OK-->
-            <!--div onclick="maisMins();">Minutos + </div-->
-            <br/>
-            <div id="msg">0 horas e 0 minutos significa dia de folga</div>
-            <label for="revisitas">Total de revisitas do dia: </label>
-            <input type="number" id="revisita" name="revisitas" form="dados" value="0"/><!--por caixinhas dinamicas para o usuario poder ir colocando suas revisitas avulsas e ir adicionando até acabar, depois o programa recolhe tudo e soma e ja insere no campo adequado OK-->
-            <br/>
-            <!--div onclick="maisRev();">Revisitas + </div-->
-            <label for="revistas">Total de revistas: </label>
-            <input type="number" id="revista" name="revistas" form="dados" value="0"/><!--por caixinhas dinamicas para o usuario poder ir colocando suas revistas avulsas e ir adicionando até acabar, depois o programa recolhe tudo e soma e ja insere no campo adequado OK-->
-            <!--div onclick="maisRevis();">Revistas + </div-->
-            <br/>
-            <label for="livros">Total de livros: </label>
-            <input type="number" id="livro" name="livros" form="dados" value="0"/><!--por caixinhas dinamicas para o usuario poder ir colocando seus livros avulsas e ir adicionando até acabar, depois o programa recolhe tudo e soma e ja insere no campo adequado OK-->
-            <!--div onclick="maisLivr();">Livros + </div-->
-            <br/>
-            <label for="broxuras">Total de broxuras: </label>
-            <input type="number" id="broxura" name="broxuras" form="dados" value="0"/><!--por caixinhas dinamicas para o usuario poder ir colocando suas broxuras avulsas e ir adicionando até acabar, depois o programa recolhe tudo e soma e ja insere no campo adequado OK-->
-            <!--div onclick="maisBrox();">Broxuras + </div-->
-            <br/>
-            <label for="observacoes">Observações do dia: </label>
-            <textarea id="observacao" name="observacoes" placeholder="Opcional" value="" form="dados"></textarea>
-            <br/>
-            <form id="dados" method="GET" action="../back/controle/insercaoEntrada.php">
-                <input type="submit" id="envia" value="Enviar!"/>
-            <br/>
-            </form>
-        <!--Final formulario-->
-    </section>
-    <div id="msg-sucesso">Atualizado com sucesso!</div>
+
+<body onload="folga(), valorDia();">
+    <div class="demo-layout-waterfall mdl-layout mdl-js-layout">
+        <header class="mdl-layout__header mdl-layout__header--waterfall">
+            <!-- Top row, always visible -->
+            <div class="mdl-layout__header-row">
+                <!-- Title -->
+                <span class="mdl-layout-title">Relatório do dia</span>
+                <div class="mdl-layout-spacer"></div>
+            </div>
+        </header>
+        <div class="mdl-layout__drawer">
+            <span class="mdl-layout-title">Relatório Diário</span>
+            <nav class="mdl-navigation">
+                <a class="mdl-navigation__link" href="index.html">Relatório Diário</a>
+                <a class="mdl-navigation__link" href="cadastro-estudante.php">Novos Estudantes</a>
+                <a class="mdl-navigation__link" href="metas.html">Metas</a>
+                <a class="mdl-navigation__link" href="">Link4</a>
+            </nav>
+        </div>
+        <main class="mdl-layout__content">
+            <div class="page-content">
+                <!--conteudo proprio-->
+
+                <section class="metas">
+                    <h1>Meta Mensal</h1>
+                    <!--Inicio formulario-->
+                    <input type="date" id="diaPadrao" name="dia" form="dados" required/>
+                    <br/>
+                    <label for="horas">Suas horas total do dia: </label>
+                    <input type="number" id="hora" name="horas" form="dados" min="0" max="24" value="0" onblur="" required/>
+                    <!--por aviso que se ficar em zero significa folga OK-->
+                    <!--div onclick="maisHors();">Horas + </div-->
+                    <br/>
+                    <label for="minutos">Seus minutos avulsos do dia: </label>
+                    <input type="number" id="minuto" name="minutos" min="0" max="60" form="dados" value="0" />
+                    <!--por caixinhas dinamicas para o usuario poder colocar seus minutos avulsos e ir adicionando até acabar, depois o programa recolhe tudo e soma e ja insere nos minutos ou nas horas se for adequado OK-->
+                    <!--div onclick="maisMins();">Minutos + </div-->
+                    <br/>
+                    <div id="msg">0 horas e 0 minutos significa dia de folga</div>
+                    <label for="revisitas">Total de revisitas do dia: </label>
+                    <input type="number" id="revisita" name="revisitas" form="dados" value="0" />
+                    <!--por caixinhas dinamicas para o usuario poder ir colocando suas revisitas avulsas e ir adicionando até acabar, depois o programa recolhe tudo e soma e ja insere no campo adequado OK-->
+                    <br/>
+                    <!--div onclick="maisRev();">Revisitas + </div-->
+                    <label for="revistas">Total de revistas: </label>
+                    <input type="number" id="revista" name="revistas" form="dados" value="0" />
+                    <!--por caixinhas dinamicas para o usuario poder ir colocando suas revistas avulsas e ir adicionando até acabar, depois o programa recolhe tudo e soma e ja insere no campo adequado OK-->
+                    <!--div onclick="maisRevis();">Revistas + </div-->
+                    <br/>
+                    <label for="livros">Total de livros: </label>
+                    <input type="number" id="livro" name="livros" form="dados" value="0" />
+                    <!--por caixinhas dinamicas para o usuario poder ir colocando seus livros avulsas e ir adicionando até acabar, depois o programa recolhe tudo e soma e ja insere no campo adequado OK-->
+                    <!--div onclick="maisLivr();">Livros + </div-->
+                    <br/>
+                    <label for="broxuras">Total de broxuras: </label>
+                    <input type="number" id="broxura" name="broxuras" form="dados" value="0" />
+                    <!--por caixinhas dinamicas para o usuario poder ir colocando suas broxuras avulsas e ir adicionando até acabar, depois o programa recolhe tudo e soma e ja insere no campo adequado OK-->
+                    <!--div onclick="maisBrox();">Broxuras + </div-->
+                    <br/>
+                    <label for="observacoes">Observações do dia: </label>
+                    <textarea id="observacao" name="observacoes" placeholder="Opcional" value="" form="dados"></textarea>
+                    <br/>
+                    <form id="dados" method="GET" action="../back/controle/insercaoEntrada.php">
+                        <input class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit" id="envia" value="Enviar!" />
+                        <br/>
+                    </form>
+                    <div id="msg-sucesso">Atualizado com sucesso!</div>
+                    <!--Final formulario-->
+                </section>
+                <!--conteudo proprio-->
+            </div>
+        </main>
+    </div>
 </body>
 <script src="funcoes.js"></script>
+<script src="/node_modules/material-design-lite/material.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
 </html>

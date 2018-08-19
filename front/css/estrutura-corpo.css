@@ -1,0 +1,273 @@
+@charset "utf8";
+/*estrutura index*/
+.diario{
+    display: flex;
+    flex-flow: column;
+    margin-bottom: 10px;
+    background-color: #3f51b5;
+    color: white;
+}
+.diario h1{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+}
+.diario #msg{
+    color: white;
+    background-color: red;
+    margin: 5px;
+}
+.diario input, label, #msg, #observacao{
+    margin: 0 10%;
+    text-align: center;
+}
+.mdl-layout__content{
+    background-color: #3f51b5;
+}
+/*estrutura metas*/
+.metas{
+    display: flex;
+    flex-flow: column;
+    margin-bottom: 10px;
+    background-color: #3f51b5;
+    color: white;
+}
+.metas h1{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+}
+.metas #msg{
+    color: white;
+    background-color: red;
+    margin: 5px;
+}
+.metas input, label, #msg, #observacao{
+    margin: 0 10%;
+    text-align: center;
+}
+.mdl-layout__content{
+    background-color: #3f51b5;
+}
+/*estrutura cadastro estudantes*/
+.estudantes{
+    display: flex;
+    flex-flow: column;
+    margin-bottom: 10px;
+    background-color: #3f51b5;
+    color: white;
+}
+.estudantes h1{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 1.5rem;
+}
+.estudantes #msgMin{
+    color: white;
+    background-color: red;
+    margin: 5px;
+}
+.estudantes input, select, label, #msgMin, #msg, #observacao{
+    margin: 0 10%;
+    text-align: center;
+}
+.mdl-layout__content{
+    background-color: #3f51b5;
+}
+/*estrutura atualizacao entrada*/
+.atualiza-entrada{
+    display: flex;
+    flex-flow: column;
+    margin-bottom: 10px;
+    background-color: #3f51b5;
+    color: white;
+}
+.atualiza-entrada h1{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 1.5rem;
+}
+.atualiza-entrada #msgMin{
+    color: white;
+    background-color: red;
+    margin: 5px;
+}
+.atualiza-entrada input, select, label, #msgMin, #msg, #observacao{
+    margin: 0 10%;
+    text-align: center;
+}
+.mdl-layout__content{
+    background-color: #3f51b5;
+}
+/*estrutura atualizacao estudantes*/
+.atualiza-estudantes{
+    display: flex;
+    flex-flow: column;
+    margin-bottom: 10px;
+    background-color: #3f51b5;
+    color: white;
+}
+.atualiza-estudantes h1{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 1.5rem;
+}
+.atualiza-estudantes #msgMin{
+    color: white;
+    background-color: red;
+    margin: 5px;
+}
+.atualiza-estudantes input, select, label, #msgMin, #msg, #observacao{
+    margin: 0 10%;
+    text-align: center;
+}
+.mdl-layout__content{
+    background-color: #3f51b5;
+}
+/*estrutura atualizacao metas*/
+.atualiza-metas{
+    display: flex;
+    flex-flow: column;
+    margin-bottom: 10px;
+    background-color: #3f51b5;
+    color: white;
+}
+.atualiza-metas h1{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 1.5rem;
+}
+.atualiza-metas #msgHora, #msgRevi, #msgRev, #msgLivr, #msgBrox{
+    color: white;
+    background-color: red;
+    margin: 5px;
+}
+.atualiza-metas input, select, label, #msgHora, #msgRevi, #msgRev, #msgLivr, #msgBrox{
+    margin: 0 10%;
+    text-align: center;
+}
+.mdl-layout__content{
+    background-color: #3f51b5;
+}
+/*estrutura exclusao entrada*/
+.exclui-entrada{
+    display: flex;
+    flex-flow: column;
+    margin-bottom: 10px;
+    background-color: #3f51b5;
+    color: white;
+}
+.exclui-entrada h1{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 1.5rem;
+}
+.aexclui-entrada #msgHora, #msgRevi, #msgRev, #msgLivr, #msgBrox{
+    color: white;
+    background-color: red;
+    margin: 5px;
+}
+.exclui-entrada input, select, label, #msgHora, #msgRevi, #msgRev, #msgLivr, #msgBrox{
+    margin: 0 10%;
+    text-align: center;
+}
+.mdl-layout__content{
+    background-color: #3f51b5;
+}
+/*estrutura exclusao estudante*/
+.exclui-estudante{
+    display: flex;
+    flex-flow: column;
+    margin-bottom: 10px;
+    background-color: #3f51b5;
+    color: white;
+}
+.exclui-estudante h1{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 1.5rem;
+}
+.exclui-estudante #warningEstudante{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0;
+}
+.exclui-estudante h2{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 1.3rem;
+    background-color: red;
+    margin: 0;
+    padding: 0;
+}
+.aexclui-estudante #msg-sucesso{
+    color: white;
+    background-color: red;
+    margin: 5px;
+}
+.exclui-estudante input, select, label{
+    margin: 0 10%;
+    text-align: center;
+}
+.exclui-estudante #delet{
+    margin: 0 10%;
+    padding: 0 100px;
+}
+.mdl-layout__content{
+    background-color: #3f51b5;
+}
+/*estrutura feito por*/
+.meio{
+    display: flex;
+    flex-flow: row;
+    margin-bottom: 10px;
+    background-color: #3f51b5;
+    color: white;
+}
+.meio h1{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 1.2rem;
+}
+.redes{
+    flex-flow: column;
+    justify-content: center;
+    align-items: flex-end;
+}
+.mdl-layout__content{
+    background-color: #3f51b5;
+}
+/*estrutura resultado das metas*/
+.meio{
+    display: flex;
+    flex-flow: row;
+    margin-bottom: 10px;
+    background-color: #3f51b5;
+    color: white;
+}
+.meio h1{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 1.2rem;
+}
+.redes{
+    justify-content: center;
+    align-items: flex-end;
+}
+.mdl-layout__content{
+    background-color: #3f51b5;
+}
