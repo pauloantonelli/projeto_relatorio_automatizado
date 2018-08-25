@@ -4,7 +4,7 @@ $conectDia = mysqli_connect('localhost','root','','relatorio');
 mysqli_select_db($conectDia,"entrada");
 
 //definicoes
-$edita = $_GET['editou']?? "ok";
+$edita = $_GET['editou'];
 $idDia = $_GET['ids'] ?? null;
 $idDiaCopy = $_GET['idsCopy'] ?? null;
 $dia = $_GET['dias'] ?? null;

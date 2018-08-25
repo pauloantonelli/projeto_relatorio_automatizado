@@ -39,38 +39,57 @@ id.onchange = function () {
 }
 
 //exibe a mensagem de sucesso apos atualizar dados
-var voltou = window.sessionStorage.getItem('enviou');
+//var voltou = window.sessionStorage.getItem('enviou');
 var enviaBtn = document.getElementById('edita');
 var delBtn = document.getElementById('delet');
-//var optData = document.getElementById('escolhaEstudante');
+var optData = document.getElementById('escolhaEstudante');
 var flag = false;
 //evento ativado pelo select > option, ativa a flag
 function flegear() {
     return flag = true;
 }
 //dispara o evento flegear
-enviaBtn.addEventListener("click", flegear);
-enviaBtn.addEventListener("click", flegear);
+optData.addEventListener("change", flegear);
 //funcao que testa se o navegador tem tem armazenado no local storage o valor da pagina de conexao do banco, se o valor do seletor de data esta em alguma data, e se a flag esta true para poder ativar a mensagem de sucesso!
-function recolhe() {
+function editar() {
     document.getElementById('edito').value = "ok";
     setTimeout(function () {
-        if (voltou == "sim" && flag == true) {
+        if (flag == true) {
             function sucesso() {
-                document.getElementById("msg-sucesso").style.display = "block";
+                document.getElementById("msg-sucesso-edicao").style.display = "block";
                 setTimeout(function () {
-                    escolhaEstudante.options[0].selected = "selected";
+                    optData.selectedIndex = 0;
                     document.getElementById("nomeEditar").value = "";
                     document.getElementById("apelido").value = "";
-                    document.getElementById("msg-sucesso").style.display = "none";
+                    document.getElementById("msg-sucesso-edicao").style.display = "none";
                 }, 5000);
             }
             sucesso();
         } else {
-            document.getElementById('msg-sucesso').style.display = "none";
+            document.getElementById('msg-sucesso-edicao').style.display = "none";
+        }
+    }, 1000);
+}
+//funcao que testa se o navegador tem tem armazenado no local storage o valor da pagina de conexao do banco, se o valor do seletor de data esta em alguma data, e se a flag esta true para poder ativar a mensagem de sucesso!
+function deletar() {
+    document.getElementById('edito').value = "nao";
+    setTimeout(function () {
+        if (flag == true) {
+            function sucesso() {
+                document.getElementById("msg-sucesso-delete").style.display = "block";
+                setTimeout(function () {
+                    optData.selectedIndex = 0;
+                    document.getElementById("nomeEditar").value = "";
+                    document.getElementById("apelido").value = "";
+                    document.getElementById("msg-sucesso-delete").style.display = "none";
+                }, 5000);
+            }
+            sucesso();
+        } else {
+            document.getElementById('msg-sucesso-delete').style.display = "none";
         }
     }, 1000);
 }
 //dispara a funcao recolhe para enviar ao banco de dados
-enviaBtn.addEventListener("click", recolhe);
-delBtn.addEventListener("click", recolhe);
+enviaBtn.addEventListener("click", editar);
+delBtn.addEventListener("click", deletar);

@@ -86,6 +86,7 @@
             <?php } ?>
         </select>
             <input type="hidden" id="id" name="ids" form="atualizacao"/>
+            <input type="hidden" id="edito" name="editou" value="ok" form="atualizacao"/>
             <br/>
             <h1>Se quiser somente editar algum dado do estudante edite aqui: </h1>
             <label for="nomeEditado">Nome: </label>
@@ -99,24 +100,24 @@
             <form id="atualizacao" method="GET" action="../back/controle/exclui-estudante.php">
                 <input class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit" id="edita" value="Editar!"/>
             </form>
-        <div id="msg-sucesso">Atualizado com sucesso!</div>
+        <div id="msg-sucesso-edicao">Atualizado com sucesso!</div>
         <!--Final formulario-->
             <hr/>
         <h1 id="warningEstudante">Atenção!</h1>
         <h2>Se quiser deletar permanentemente esse estudante, use o botão abaixo!</h2>
         <br/>
-        <form id="deletando" method="GET" action="../back/controle/exclui-estudante.php">
-        <input type="hidden" id="edito" name="editou" value="nao" form="deletando"/>
         <input type="hidden" id="idCopy" name="idsCopy" form="deletando"/>
-        <input class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit" id="delet" value="Deletar!"/>
+        <input type="hidden" id="edito" name="editou" value="nao" form="deletando"/>
+        <form id="deletando" method="GET" action="../back/controle/exclui-estudante.php">
+            <input class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit" id="delet" value="Deletar!"/>
         </form>
+        <div id="msg-sucesso-delete">Excluido com sucesso!</div>
     </section>
 <!--conteudo proprio-->
 </div>
         </main>
       </div>
 </body>
-<script src="funcoes.js"></script>
 <script src="../node_modules/material-design-lite/material.min.js"></script>
 <script src="../back/model/funcoes-exclusao-estudantes.js"></script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">

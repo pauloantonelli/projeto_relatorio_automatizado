@@ -34,21 +34,61 @@ function minAlert() {
 function idEstudante(opcao) {
     setTimeout(function () {
         var x = opcao;
-        //id pessoa
-        var inicioID = x.indexOf("id") + 2;
-        var finalID = x.indexOf("nome");
+        //id
+        var inicioID = x.indexOf("acao")+4;
+        var finalID = x.indexOf("idPessoa");
         var corteID = x.slice(inicioID, finalID);
         document.getElementById('id').value = corteID;
-        //nome pessoa / edicao nome
-        var inicioPessID = x.indexOf("nome") + 4;
-        var finalPessID = x.indexOf("apelido");
+        //id pessoa
+        var inicioPessID = x.indexOf("ssoa")+4;
+        var finalPessID = x.indexOf("dia");
         var cortePessID = x.slice(inicioPessID, finalPessID);
-        document.getElementById('nomeEditar').value = cortePessID;
-        //apelido pessoa
-        var inicioApelido = x.indexOf("lido") + 4;
-        var finalApelido = x.length;
-        var corteApelido = x.slice(inicioApelido, finalApelido);
-        document.getElementById('apelido').value = corteApelido;
+        document.getElementById('identPessoa').value = cortePessID;
+        //pessoa
+        var inicioPess = x.indexOf("nome") + 4;
+        var finalPess = x.indexOf("apelido");
+        var cortePess = x.slice(inicioPess, finalPess);
+        document.getElementById('nomePessoa').value = cortePess;
+        //dia
+        var inicioMes = x.indexOf("dia") + 3;
+        var finalMes = x.indexOf("nome");
+        var corteMes = x.slice(inicioMes, finalMes);
+        document.getElementById('diaEscolhido').value = corteMes;
+        //horas
+        var inicioHr = x.indexOf("ras") + 3;
+        var finalHr = x.indexOf("minutos");
+        var corteHr = x.slice(inicioHr, finalHr);
+        document.getElementById("hora").value = corteHr;
+        //minutos
+        var inicioHr = x.indexOf("tos") + 3;
+        var finalHr = x.indexOf("revisitas");
+        var corteHr = x.slice(inicioHr, finalHr);
+        document.getElementById("minuto").value = corteHr;
+        //revisitas
+        var inicioRevi = x.indexOf("itas") + 4;
+        var finalRevi = x.indexOf("revistas");
+        var corteRevi = x.slice(inicioRevi, finalRevi);
+        document.getElementById("revisita").value = corteRevi;
+        //revistas
+        var inicioRev = x.indexOf("stas") + 4;
+        var finalRev = x.indexOf("livros");
+        var corteRev = x.slice(inicioRev, finalRev);
+        document.getElementById("revista").value = corteRev;
+        //livros
+        var inicioLivr = x.indexOf("ros") + 3;
+        var finalLivr = x.indexOf("broxuras");
+        var corteLivr = x.slice(inicioLivr, finalLivr);
+        document.getElementById("livro").value = corteLivr;
+        //broxuras
+        var inicioBrox = x.indexOf("uras") + 4;
+        var finalBrox = x.indexOf("obs");
+        var corteBrox = x.slice(inicioBrox, finalBrox);
+        document.getElementById("broxura").value = corteBrox;
+        //obs dia
+        var inicioObs = x.indexOf("obs") + 3;
+        var finalObs = x.length;
+        var corteObs = x.slice(inicioObs, finalObs);
+        document.getElementById("observacao").value = corteObs;
     }, 1000);
 }
 
@@ -64,7 +104,7 @@ id.onchange = function () {
 }
 
 //exibe a mensagem de sucesso apos atualizar dados
-//var voltou = window.sessionStorage.getItem('enviou');
+//var voltou = window.sessionStorage.getItem('cadastro');
 var enviaBtn = document.getElementById('envia');
 var flag = false;
 //evento ativado pelo select > option, ativa a flag
@@ -74,17 +114,15 @@ function flegear() {
 //dispara o evento flegear
 id.addEventListener("change", flegear);
 //funcao que testa se o navegador tem tem armazenado no local storage o valor da pagina de conexao do banco, se o valor do seletor de data esta em alguma data, e se a flag esta true para poder ativar a mensagem de sucesso!
-function recolhe() {
+function edita() {
     setTimeout(function () {
-        document.getElementById('')
         if (flag == true) {
             function sucesso() {
                 document.getElementById("msg-sucesso").style.display = "block";
                 setTimeout(function () {
-                    escolhaEstudante.options[0].selected = "selected";
-                    document.getElementById("nomeEditar").value = "";
-                    document.getElementById("pessoa").value = "";
-                    document.getElementById("apelido").value = "";
+                    escolhaEstudante.options[0].selected="selected";
+                    document.getElementById("diaEscolhido").value = "";
+                    document.getElementById("nomePessoa").value = "";
                     document.getElementById("hora").value = "";
                     document.getElementById("minuto").value = "";
                     document.getElementById("revisita").value = "";
@@ -102,52 +140,4 @@ function recolhe() {
     }, 1000);
 }
 //dispara a funcao recolhe para enviar ao banco de dados
-enviaBtn.addEventListener("click", recolhe);
-
-//instancia dos options com seus respectivos dados vindo do banco
-var id = document.querySelector('select[id="escolhaEstudante"]');
-//evento ativado pelo select > option que pega o valor do select de cada pessoa e repassa para a funcao dados estudantes
-var cont = id.length;
-document.getElementById('id').value = cont;
-//instancia dos options com seus respectivos dados vindo do banco
-var selectId = document.querySelector('select[id="escolhaId"]');
-//evento ativado pelo select > option que pega o valor do select de cada pessoa e repassa para a funcao dados estudantes
-var cont2 = selectId.length;
-document.getElementById('idTran').value = cont2+1;
-
-//Funcao para esconder ou nao campo Novo estudante
-var flagEStudante = false;
-//evento ativado pelo select > option, ativa a flag
-function flegearEstudante() {
-    var estado = document.getElementById('escolhaEstudante').selectedIndex;
-        if(estado != 0){
-            return flagEStudante = true;
-        }else{
-            return flagEStudante = false;
-        }
-}
-//dispara o evento flegear
-id.addEventListener("change", flegearEstudante);
-//funcao para esconder campo novo estudante
-function escondeNewEst(){
-    setTimeout(function(){
-        if(flagEStudante == true){
-            var etiquetaPessoa = document.getElementsByTagName("label");
-            etiquetaPessoa[1].style.display = "block";
-            document.getElementById("nomeEditar").style.display = "block";
-
-            var etiquetaPessoa = document.getElementsByTagName("label");
-            etiquetaPessoa[2].style.display = "none";
-            document.getElementById("pessoa").style.display = "none";
-        }else if(flagEStudante == false){
-            var etiquetaPessoa = document.getElementsByTagName("label");
-            etiquetaPessoa[1].style.display = "none";
-            document.getElementById("nomeEditar").style.display = "none";
-            
-            var etiquetaPessoa = document.getElementsByTagName("label");
-            etiquetaPessoa[2].style.display = "block";
-            document.getElementById("pessoa").style.display = "block";
-        }
-    },1000);
-}
-id.addEventListener("change", escondeNewEst);
+enviaBtn.addEventListener("click", edita);

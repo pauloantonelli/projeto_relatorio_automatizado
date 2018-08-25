@@ -66,7 +66,7 @@
         mysqli_select_db($conectId,"metamensal");
         $queryId = mysqli_query($conectId, "SELECT * FROM metamensal");
         ?>
-        <h1>Relatório Diário</h1>
+        <h1>Atualizar metas</h1>
         <!--Inicio formulario mes-->
         <label>Escolha o mês desejado: </label>
         <select id="escolhaMes">
@@ -110,8 +110,7 @@
         </main>
       </div>
 </body>
-<script src="funcoes.js"></script>
 <script src="../node_modules/material-design-lite/material.min.js"></script>
-<script src="../back/model/funcoes-atualizacao-metas1.js"></script>
+<script src="../back/model/funcoes-atualizacao-metas.js"></script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </html>

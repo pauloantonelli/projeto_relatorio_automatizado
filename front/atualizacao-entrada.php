@@ -112,8 +112,7 @@
         </main>
       </div>
 </body>
-<script src="funcoes.js"></script>
 <script src="../node_modules/material-design-lite/material.min.js"></script>
-<script src="../back/model/funcoes-atualizacao-entrada1.js"></script>
+<script src="../back/model/funcoes-atualizacao-entrada.js"></script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </html>

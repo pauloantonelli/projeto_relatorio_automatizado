@@ -10,12 +10,13 @@ describe metaMensal;
 
 /*select * from entrada;*/
 select * from entrada;
+SELECT sum(horas), sum(minutos), sum(revisitas), sum(revistas), sum(livros), sum(broxuras) 
+FROM entrada WHERE YEAR(dia) = 2018 AND MONTH(dia) = 8;
 
 select * from pessoa;
+SELECT count(nome) FROM pessoa;
 
 select * from regpessoa;
-
-select * from pessoa where dia = '2018-08-09';
 
 select * from metaAnual;
 
@@ -43,7 +44,6 @@ from pessoa as p inner join regpessoa as r
 on p.id = r.idpessoa
 where idPessoa = '1'
 order by p.nome;
-
 
 
 /*SELECT count (*)

@@ -1,4 +1,11 @@
 <?php
+date_default_timezone_set('America/Sao_Paulo');//seta o horario padrao de brasilia para todos os scripts que usam hora
+setlocale(LC_TIME, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
+$ano = date("Y", time());
+$mes = date("m", time());
+$mes_desc = date('F', time());
+$hora_envio = date("H:i:s", time());//time()chama a time zone definida como padrao
+
 //conexao com meta anual /
 $conectAnual = mysqli_connect('localhost','root','','relatorio');
 mysqli_select_db($conectAnual,"metaanual");
@@ -11,12 +18,24 @@ mysqli_select_db($conectPessoa,"pessoa");
 //conexao com entrada
 $conectEntrada = mysqli_connect('localhost','root','','relatorio');
 mysqli_select_db($conectEntrada,"entrada");
+//conexao com soma
+$conectSoma = mysqli_connect('localhost','root','','relatorio');
+mysqli_select_db($conectSoma,"entrada");
+//conexao estudantes
+$conectEstudante = mysqli_connect('localhost','root','','relatorio');
+mysqli_select_db($conectEstudante,"pessoa");
 
 //seleciona os dados da meta anual
 $queryAno = mysqli_query($conectAnual, "SELECT * FROM metaAnual");
 $queryMes = mysqli_query($conectMensal, "SELECT * FROM metaMensal");
 $queryPessoa = mysqli_query($conectPessoa, "SELECT * FROM pessoa");
 $queryEntrada = mysqli_query($conectEntrada, "SELECT * FROM entrada");
+//criar query com soma para retornar os valores direto do banco somados
+$querySoma = mysqli_query($conectSoma, "SELECT sum(horas), sum(minutos), sum(revisitas), sum(revistas), sum(livros), sum(broxuras) 
+FROM entrada WHERE YEAR(dia) = $ano AND MONTH(dia) = $mes;");
+//query com soma para retornar os valores direto do banco somados
+$queryEstudante = mysqli_query($conectSoma, "SELECT count(nome) FROM pessoa;");
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -33,7 +52,8 @@ $queryEntrada = mysqli_query($conectEntrada, "SELECT * FROM entrada");
     <link rel="stylesheet" href="css/reset-inicial.css"/>
     <link rel="stylesheet" href="css/estrutura-corpo.css"/>
     <link rel="stylesheet" href="css/detalhes-menu.css"/>
-    <!--link href="main.css?version=12"/--><!--engana o cache do navegador para atualizar sempre-->
+    <link rel="stylesheet" href="css/progress-metas.css"/>
+    <link href="main.css?version=12"/><!--engana o cache do navegador para atualizar sempre-->
     <style>
         .demo-layout-waterfall .mdl-layout__header-row .mdl-navigation__link:last-of-type  {
         padding-right: 0;
@@ -80,10 +100,46 @@ $queryEntrada = mysqli_query($conectEntrada, "SELECT * FROM entrada");
           <div class="page-content">
 <!--conteudo proprio-->        
 
-  <section class="results">
+  <section>
+  <!--tabela superior com relatorio final-->
+    <div class="relatorio-resumido">
+      <h1>Relatório de Serviço de campo</h1>
+      <div class="nomeRelatorio">Aparecida de fátima albino</div>
+      <div class="divRel">
+      <!--contador while enquanto houver registros ele continua no loopin-->
+        <!--div com dados do relatorio geral somados-->
+        <?php while($soma = mysqli_fetch_array($querySoma)) { ?>
+          <div id="soma"><?php echo "horas".$soma['sum(horas)']."minutos".$soma['sum(minutos)']."revisitas".$soma['sum(revisitas)']."revistas".$soma['sum(revistas)']."livros".$soma['sum(livros)']."broxuras".$soma['sum(broxuras)'] ?></div>
+        <?php } ?>
+
+        <!--div com dados do relatorio geral somados-->
+        <?php while($estudante = mysqli_fetch_array($queryEstudante)) { ?>
+          <div id="estudantes"><?php echo "estudos".$estudante['count(nome)'] ?></div>
+        <?php } ?>
+        
+        <div class="labelRel">Mês:</div><div id="mes" class="infoRel"><?php echo strftime("%B"); ?></div>
+      </div>
+      <div class="divRel">
+        <div class="labelRel">Publicações:</div><div id="pub" class="infoRel">--</div>
+      </div>
+      <div class="divRel">
+        <div class="labelRel">Videos mostrados:</div><div id="mostrVideo" class="infoRel">[em breve]</div>
+      </div>
+      <div class="divRel">
+        <div class="labelRel">Horas: </div><div id="horas" class="infoRel">--</div>
+      </div>
+      <div class="divRel">
+        <div class="labelRel">Revisitas: </div><div id="revisitas" class="infoRel">--</div>
+      </div>
+      <div class="divRel">
+        <div class="labelRel">Estudos Biblicos: </div><div id="estudos" class="infoRel">--</div>
+      </div>
+    </div>
+    <hr class="linha-divisao-Rel"/>
     <!--formulário em html com o select dos dados-->
-    <form name="metaAnual" method="GET" action="">
-      <label>Meta Anual</label>
+    <form class="results" name="metaAnual" method="GET" action="">
+      <label>Consultar meta Anual</label>
+      <br/>
       <select id="anualMeta">
         <option>Selecione...</option>
     <!--contador while enquanto houver registros ele continua no loopin-->
@@ -91,73 +147,76 @@ $queryEntrada = mysqli_query($conectEntrada, "SELECT * FROM entrada");
         <option class="ano" value="<?php echo " Ano: " . $metaAno['idAno'] . " Horas pretendidas: " . $metaAno['hora'] . " Revisitas pretendidas: " . $metaAno['revisita'] . " Revistas pretendidas: " . $metaAno['revista'] . " Livros pretendidos: " . $metaAno['livro'] . " Broxuras pretendidas: " . $metaAno['broxura']?>"><?php echo $metaAno['idAno'] ?></option>
         <?php } ?>
       </select>
-      <div id="metaDoAno"></div>
-      <div id="metaHoraAno"></div>
-      <div id="metaReviAno"></div>
-      <div id="metaRevAno"></div>
-      <div id="metaLivrAno"></div>
-      <div id="metaBroxAno"></div>
-    <hr/>
-
-      <label>Meta Mensal</label>
+      <div class="apoio_fundo">
+        <div class="results" id="metaDoAno"></div>
+        <div class="results" id="metaHoraAno"></div>
+        <div id="progressAnual">
+          <div id="progressHoraAnual">--</div>
+        </div>
+        <div class="results" id="metaReviAno"></div>
+        <div id="progressAnual">
+          <div id="progressReviAnual">--</div>
+        </div>
+        <div class="results" id="metaRevAno"></div>
+        <div id="progressAnual">
+          <div id="progressRevAnual">--</div>
+        </div>
+        <div class="results" id="metaLivrAno"></div>
+        <div id="progressAnual">
+          <div id="progressLivrAnual">--</div>
+        </div>
+        <div class="results" id="metaBroxAno"></div>
+        <div id="progressAnual">
+          <div id="progressBroxAnual">--</div>
+        </div>
+        <br/>
+      </div>
+      <hr class="linha-divisao"/>
+      <label>Consultar meta Mensal</label>
+      <br/>
       <select id="mensalMeta">
-        <option>Selecione...</option>
+        <option value="raizMes">Selecione...</option>
     <!--contador while enquanto houver registros ele continua no loopin-->
         <?php while($metaMes = mysqli_fetch_array($queryMes)) { ?>
           <option id="optMes" class="mes" value="<?php echo " Mes:" . $metaMes['idMes'] . " Horas pretendidas: " . $metaMes['hora'] . " Revisitas pretendidas: " . $metaMes['revisita'] . " Revistas pretendidas: " . $metaMes['revista'] . " Livros pretendidos: " . $metaMes['livro'] . " Broxuras pretendidas: " . $metaMes['broxura']?>"><?php echo $metaMes['mes'] ?></option>
         <?php } ?>
       </select>
-      <div id="metaDoMes"></div>
-      <div id="metaHoraMes"></div>
-      <div id="metaReviMes"></div>
-      <div id="metaRevMes"></div>
-      <div id="metaLivrMes"></div>
-      <div id="metaBroxMes"></div>
-    <hr/>
-
-    <label>Estudantes</label>
-      <select id="estudantes">
-        <option>Selecione...</option>
-    <!--contador while enquanto houver registros ele continua no loopin-->
-        <?php while($pessoa = mysqli_fetch_array($queryPessoa, MYSQLI_ASSOC)) { ?>
-          <option class="estudantes" value='<?php echo "id" . $pessoa["id"]."Nome: " . $pessoa["nome"]."Apelido: ".$pessoa["apelido"]?>'><?php echo $pessoa['nome'] ?></option>
-        <?php } ?>
-      </select>
-      <div id="nomeEstudante"></div>
-      <div id="apelidoEstudante"></div>
-    <hr/>
-
-    <label>Dia a Dia</label>
-      <select id="diario">
-        <option>Selecione...</option>
-    <!--contador while enquanto houver registros ele continua no loopin-->
-        <?php while($entrada = mysqli_fetch_array($queryEntrada, MYSQLI_ASSOC)) { ?>
-        <option class="diario" value="<?php echo "idDia".$entrada['idDia']."dia: ".$entrada['dia']."Horas: ".$entrada['horas']."Minutos: ".$entrada['minutos']."Revisitas: ".$entrada['revisitas']."Revistas: ".$entrada['revistas']."Livros: ".$entrada['livros']."Broxuras: ".$entrada['broxuras']."Observacoes: ".$entrada['observacoes']?>"><?php echo $entrada['dia'] ?></option>
-        <?php } ?>
-      </select>
-      <div id="hora"></div>
-      <div id="minutos"></div>
-      <div id="revisitas"></div>
-      <div id="revistas"></div>
-      <div id="livros"></div>
-      <div id="broxuras"></div>
-      <div id="obs"></div>
-    <hr/>
+      <div class="apoio_fundo">
+        <div class="results" id="metaDoMes"></div>
+        <div class="results" id="metaHoraMes"></div>
+        <div id="progressMensal">
+          <div id="progressHoraMes">--</div>
+        </div>
+        <div class="results" id="metaReviMes"></div>
+        <div id="progressMensal">
+          <div id="progressReviMes">--</div>
+        </div>
+        <div class="results" id="metaRevMes"></div>
+        <div id="progressMensal">
+          <div id="progressRevMes">--</div>
+        </div>
+        <div class="results" id="metaLivrMes"></div>
+        <div id="progressMensal">
+          <div id="progressLivrMes">--</div>
+        </div>
+        <div class="results" id="metaBroxMes"></div>
+        <div id="progressMensal">
+          <div id="progressBroxMes">--</div>
+        </div>
+        <br/>
+      </div>
+      <hr class="linha-divisao"/>
     </form>
-    <div id="msg"></div>
     <script type="text/javascript" src="../front/view-relatorio/metaAnual.js"></script>
     <script type="text/javascript" src="../front/view-relatorio/metaMensal.js"></script>
-    <script type="text/javascript" src="../front/view-relatorio/estudantes1.js"></script>
-    <script type="text/javascript" src="../front/view-relatorio/diario1.js"></script>
+    <script type="text/javascript" src="../front/view-relatorio/diario.js"></script>
   </section>
 <!--conteudo proprio-->
 </div>
         </main>
       </div>
 </body>
-<script src="funcoes.js"></script>
 <script src="../node_modules/material-design-lite/material.min.js"></script>
-<script src="../back/model/funcoes-exclusao-estudantes.js"></script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </html>
 

@@ -4,7 +4,7 @@ $conectPess = mysqli_connect('localhost','root','','relatorio');
 mysqli_select_db($conectPess,"pessoa");
 
 //definicoes
-$edita = $_GET['editou']?? "ok";
+$edita = $_GET['editou'];
 $idPessoa = $_GET['ids'] ?? null;
 $idPessoaCopy = $_GET['idsCopy'] ?? null;
 $nomePessoa = $_GET['nomeEditado'] ?? null;
@@ -12,10 +12,12 @@ $apelido = $_GET['apelidos'] ?? null;
 
 if($edita == "ok"){
     mysqli_query($conectPess, "UPDATE `relatorio`.`pessoa` SET `nome` = '{$nomePessoa}', `apelido` = '{$apelido}' WHERE (`id` = '{$idPessoa}')");
+    echo $edita;
 }elseif($edita == "nao"){
     //deleta o estudante atual
     mysqli_query($conectPess, "DELETE FROM `relatorio`.`regPessoa` WHERE (`idPessoa` = '{$idPessoaCopy}')");
     mysqli_query($conectPess, "DELETE FROM `relatorio`.`pessoa` WHERE (`id` = '{$idPessoaCopy}')");
+    echo $edita;
 };
 
 header("location:javascript://history.go(-1)");

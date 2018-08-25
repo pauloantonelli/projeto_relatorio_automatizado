@@ -11,6 +11,9 @@ input#mes{
 div#msg-sucesso{
     display: none;
 }
+div#msg-sucesso-edicao, div#msg-sucesso-delete{
+    display: none;
+}
 select#escolhaId{
     display: none;
 }

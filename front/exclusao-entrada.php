@@ -77,6 +77,7 @@
             <?php } ?>
         </select>
             <input type="hidden" id="id" name="ids" form="atualizacao"/>
+            <input type="hidden" id="edito" name="editou" value="ok" form="atualizacao"/>
             <br/>
             <h1>Se quiser somente editar algum dado do dia edite aqui: </h1>
             <input type="date" id="dia" name="dias" form="atualizacao" value=""/>
@@ -111,29 +112,28 @@
             <br/>
             <textarea id="ob" name="obs" form="atualizacao" value="" placeholder="*opcional"></textarea>
             <br/>
-
             <form id="atualizacao" method="GET" action="../back/controle/exclui-entrada.php">
                 <input class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit" id="edita" value="Editar!"/>
             </form>
-        <div id="msg-sucesso">Atualizado com sucesso!</div>
+            <div id="msg-sucesso-edicao">Atualizado com sucesso!</div>
         <!--Final formulario-->
             <hr/>
-        <h2>Atenção!</h2>
-        <h3>Se quiser deletar permanentemente <p id="estudanteDeleta"></p> use o botão abaixo!</h3>
+        <h1 id="warningEstudante">Atenção!</h1>
+        <h2>Se quiser deletar permanentemente use o botão abaixo!</h2>
         <br/>
-        <form id="deletando" method="GET" action="../back/controle/exclui-entrada.php">
-        <input type="hidden" id="edito" name="editou" value="nao" form="deletando"/>
         <input type="hidden" id="idCopy" name="idsCopy" form="deletando"/>
+        <input type="hidden" id="edito" name="editou" value="nao" form="deletando"/>
+        <form id="deletando" method="GET" action="../back/controle/exclui-entrada.php">
         <input class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit" id="delet" value="Deletar!"/>
         </form>
+        <div id="msg-sucesso-delete">Excluido com sucesso!</div>
     </section>
 <!--conteudo proprio-->
 </div>
         </main>
       </div>
 </body>
-<script src="funcoes.js"></script>
 <script src="../node_modules/material-design-lite/material.min.js"></script>
-<script src="../back/model/funcoes-exclusao-entrada1.js"></script>
+<script src="../back/model/funcoes-exclusao-entrada.js"></script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </html>

@@ -1,5 +1,95 @@
 @charset "utf8";
-/*estrutura index*/
+/*estrutura index(consultar relatorio)*/
+.relatorio-resumido{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    margin: 1px;
+    padding: 1px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #293475;
+}
+.relatorio-resumido h1{
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.3rem;
+    width: 100%;
+    color: white;
+}
+div.nomeRelatorio{
+    width: 100%;
+    text-align: center;
+    font-size: 1.3rem;
+    color: white;
+    margin-bottom: 10px;
+}
+div.divRel{
+    width: 100%;
+    display: flex;/*chamando novamente o flex estabelecemos um flex-direction: row, oque deixará essa grid como row*/
+}
+.labelRel{
+    width: 50%;
+    color: white;
+    text-align: center;
+    font-size: 1rem;
+    margin: 1px;
+    padding: 1px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #293475;
+}
+.infoRel{
+    width: 50%;
+    color: white;
+    text-align: center;
+    font-size: 1rem;
+    margin: 1px;
+    padding: 1px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #293475;
+}
+.linha-divisao-Rel{
+    margin: 20px 10px;
+}
+#soma, #estudantes{
+    display: none;
+}
+#progressAnual, #progressMensal{
+    margin: 0 10%;
+}
+/*estrutura index(outra sessao)*/
+.results{
+    display: flex;
+    flex-flow: column;
+    margin-top: 20px;
+}
+div.results{
+    color: white;
+    text-align: center;
+    font-size: 1.1rem;
+    margin: 5px;
+}
+div.apoio_fundo{
+    background-color: #293475;
+    margin: 10px;
+    border-radius: 5px;
+}
+.linha-divisao{
+    margin: 20px 10px;
+}
+.results label{
+    margin: 0 10%;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+}
+.mdl-layout__content{
+    background-color: #3f51b5;
+}
+/*estrutura insercao relatorio*/
 .diario{
     display: flex;
     flex-flow: column;
@@ -11,7 +101,7 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-
+    font-size: 1.3rem;
 }
 .diario #msg{
     color: white;
@@ -21,6 +111,18 @@
 .diario input, label, #msg, #observacao{
     margin: 0 10%;
     text-align: center;
+}
+#msg-sucesso{
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: center;
+    color: white;
+    background-color: red;
+    margin: 5px;
+}
+.diario #envia{
+    margin: 0 10%;
+    padding: 0 100px;
 }
 .mdl-layout__content{
     background-color: #3f51b5;
@@ -74,6 +176,11 @@
     margin: 0 10%;
     text-align: center;
 }
+.estudantes #envia{
+    margin: 0 10%;
+    padding: 0 100px;
+}
+
 .mdl-layout__content{
     background-color: #3f51b5;
 }
@@ -91,13 +198,18 @@
     text-align: center;
     font-size: 1.5rem;
 }
-.atualiza-entrada #msgMin{
+.atualiza-entrada #msg-sucesso{
     color: white;
     background-color: red;
     margin: 5px;
 }
 .atualiza-entrada input, select, label, #msgMin, #msg, #observacao{
     margin: 0 10%;
+    text-align: center;
+}
+.atualiza-entrada #envia{
+    margin: 0 10%;
+    padding: 0 100px;
     text-align: center;
 }
 .mdl-layout__content{
@@ -126,6 +238,11 @@
     margin: 0 10%;
     text-align: center;
 }
+.atualiza-estudantes #envia{
+    margin: 0 10%;
+    padding: 0 100px;
+    text-align: center;
+}
 .mdl-layout__content{
     background-color: #3f51b5;
 }
@@ -152,6 +269,18 @@
     margin: 0 10%;
     text-align: center;
 }
+#msg-sucesso{
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: center;
+    color: white;
+    background-color: red;
+    margin: 5px;
+}
+.atualiza-metas #envia{
+    margin: 0 10%;
+    padding: 0 100px;
+}
 .mdl-layout__content{
     background-color: #3f51b5;
 }
@@ -169,7 +298,7 @@
     text-align: center;
     font-size: 1.5rem;
 }
-.aexclui-entrada #msgHora, #msgRevi, #msgRev, #msgLivr, #msgBrox{
+.exclui-entrada #msgHora, #msgRevi, #msgRev, #msgLivr, #msgBrox{
     color: white;
     background-color: red;
     margin: 5px;
@@ -177,6 +306,35 @@
 .exclui-entrada input, select, label, #msgHora, #msgRevi, #msgRev, #msgLivr, #msgBrox{
     margin: 0 10%;
     text-align: center;
+}
+.exclui-entrada #warningEstudante{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0;
+}
+.exclui-entrada h2{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 1.3rem;
+    background-color: red;
+    margin: 0;
+    padding: 0;
+}
+#msg-sucesso-edicao, #msg-sucesso-delete{
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: center;
+    color: white;
+    background-color: red;
+    margin: 5px;
+}
+.exclui-entrada #delet, #edita{
+    margin: 0 10%;
+    padding: 0 100px;
 }
 .mdl-layout__content{
     background-color: #3f51b5;
@@ -212,61 +370,113 @@
     margin: 0;
     padding: 0;
 }
-.aexclui-estudante #msg-sucesso{
+.exclui-estudante #msg-sucesso{
     color: white;
     background-color: red;
     margin: 5px;
 }
-.exclui-estudante input, select, label{
+.exclui-estudante input, select, label, textarea{
     margin: 0 10%;
     text-align: center;
 }
-.exclui-estudante #delet{
+.exclui-estudante #delet, #edita{
     margin: 0 10%;
     padding: 0 100px;
+}
+#msg-sucesso-edicao, #msg-sucesso-delete{
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: center;
 }
 .mdl-layout__content{
     background-color: #3f51b5;
 }
 /*estrutura feito por*/
-.meio{
+/*.meio{
     display: flex;
-    flex-flow: row;
-    margin-bottom: 10px;
-    background-color: #3f51b5;
-    color: white;
-}
-.meio h1{
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    font-size: 1.2rem;
-}
-.redes{
     flex-flow: column;
-    justify-content: center;
-    align-items: flex-end;
-}
-.mdl-layout__content{
-    background-color: #3f51b5;
-}
-/*estrutura resultado das metas*/
-.meio{
-    display: flex;
-    flex-flow: row;
+    align-items: center;
     margin-bottom: 10px;
     background-color: #3f51b5;
     color: white;
-}
-.meio h1{
-    justify-content: center;
+}*/
+.meio{
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
     align-items: center;
-    text-align: center;
-    font-size: 1.2rem;
 }
-.redes{
-    justify-content: center;
-    align-items: flex-end;
+@media only screen and  (min-width: 768px){
+    .meio{
+        background-color: white;
+    }
+    .meio .redes{
+        margin: 5%;
+    }
+    .meio .redes a img{
+        flex-flow: row;
+        flex: 1, 1, 20px;
+        width: 20%;
+        margin: 2%;
+        padding: 0;
+    }
+    .meio h1{
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-size: 1.3rem;
+        font-weight: bold;
+        padding: 0;
+        margin: 20px 0 0 0;
+        color: #3f51b5;
+    }
+    .meio h2{
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-size: 1.2rem;
+        font-weight: bold;
+        padding: 0;
+        margin: 0;
+        color: #3f51b5;
+    }
+}
+@media only screen and (max-width: 767px){
+    .meio .redes{
+        margin: 5%;
+        background-color: white;
+    }
+    .meio .redes a img{
+        flex-flow: row;
+        flex: 1, 1, 20px;
+        width: 45%;
+        margin: 2%;
+        padding: 0;
+    }
+    .meio h1{
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-size: 1.3rem;
+        font-weight: bold;
+        padding: 0;
+        margin: 20px 0 0 0;
+        color: white;
+    }
+    .meio h2{
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-size: 1.2rem;
+        font-weight: bold;
+        padding: 0;
+        margin: 0;
+        color: white;
+    }
 }
 .mdl-layout__content{
     background-color: #3f51b5;

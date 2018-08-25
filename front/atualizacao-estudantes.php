@@ -72,9 +72,9 @@
             on p.id = r.idpessoa
             order by p.nome;");
         ?>
-        <h1>Relatório Diário</h1>
+        <h1>Revisitas dos estudantes</h1>
         <!--Inicio formulario-->
-        <label>Escolha o dia para modificar: </label>
+        <label>Escolha uma data para modificar: </label>
         <select id="escolhaEstudante">
             <option selected>Selecione...</option>
             <!--contador while enquanto houver registros ele continua no loopin-->
@@ -87,7 +87,7 @@
             <input type="hidden" id="identPessoa" name="idPessoa" form="atualizacao" readonly/>
             <br/>
             <label for="dia">Dia escolhido: </label>
-            <input type="date" id="diaEscolhido" name="dia" form="atualizacao" min="0" value="" readonly/>
+            <input type="date" id="diaEscolhido" name="dia" form="atualizacao" min="0" value=""/>
             <br/>
             <label for="nome">Estudante: </label>
             <input type="text" id="nomePessoa" name="nome" form="atualizacao" min="0" value="" readonly/>
@@ -125,8 +125,7 @@
         </main>
       </div>
 </body>
-<script src="funcoes.js"></script>
 <script src="../node_modules/material-design-lite/material.min.js"></script>
-<script src="../back/model/funcoes-atualizacao-estudantes1.js"></script>
+<script src="../back/model/funcoes-atualizacao-estudantes.js"></script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </html>

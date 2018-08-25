@@ -1,8 +1,8 @@
 //pega e exibe o dia
-/*function diaHoje(){
+function diaHoje(){
 var dia = new Date().toDateString();
 document.getElementById('diaHoje').innerHTML = dia;
-}*/
+}
 //funcao que pega dia/mes/ano atual e autopreenche a data
 function valorDia(){
     var d = new Date();
@@ -33,57 +33,30 @@ function folga(){
 
 //exibe a mensagem de sucesso apos atualizar dados
 //var voltou = window.sessionStorage.getItem('pagina');
-var enviaBtn = document.getElementById('edita');
-var delBtn = document.getElementById('delet');
+var enviaBtn = document.getElementById('envia');
 var flag = false;
 //evento ativado pelo select > option, ativa a flag
 function flegear(){
     return flag = true;
 }
 //dispara o evento flegear
-enviaBtn.addEventListener("click", flegear);
-delBtn.addEventListener("click", flegear);//ver por que nao esta resetando
+enviaBtn.addEventListener("click", flegear);//ver por que nao esta resetando
 //funcao que testa se o navegador tem tem armazenado no local storage o valor da pagina de conexao do banco, se o valor do seletor de data esta em alguma data, e se a flag esta true para poder ativar a mensagem de sucesso!
-function edita(){
-    document.getElementById('edito').value = "ok";
+function recolhe(){
     setTimeout(function(){
         if(flag == true){
             function sucesso() {
-                document.getElementById("msg-sucesso-edicao").style.display = "block";
+                document.getElementById("msg-sucesso").style.display = "block";
                 setTimeout(function(){
-                    //document.getElementById("diaPadrao").value = "";
+                    document.getElementById("diaPadrao").value = "";
                     document.getElementById("hora").value = "";
                     document.getElementById("minuto").value = "";
                     document.getElementById("revisita").value = "";
                     document.getElementById("revista").value = "";
                     document.getElementById("livro").value = "";
                     document.getElementById("broxura").value = "";
-                    document.getElementById("ob").value = "";
-                    document.getElementById("msg-sucesso-edicao").style.display = "none";
-                }, 5000);
-            }
-            sucesso();
-        }else{
-            document.getElementById('msg-sucesso').style.display = "none";
-        }
-    },1000);
-}
-function deleta(){
-    document.getElementById('edito').value = "nao";
-    setTimeout(function(){
-        if(flag == true){
-            function sucesso() {
-                document.getElementById("msg-sucesso-delete").style.display = "block";
-                setTimeout(function(){
-                    //document.getElementById("diaPadrao").value = "";
-                    document.getElementById("hora").value = "";
-                    document.getElementById("minuto").value = "";
-                    document.getElementById("revisita").value = "";
-                    document.getElementById("revista").value = "";
-                    document.getElementById("livro").value = "";
-                    document.getElementById("broxura").value = "";
-                    document.getElementById("ob").value = "";
-                    document.getElementById("msg-sucesso-delete").style.display = "none";
+                    document.getElementById("observacao").value = "";
+                    document.getElementById("msg-sucesso").style.display = "none";
                 }, 5000);
             }
             sucesso();
@@ -93,8 +66,7 @@ function deleta(){
     },1000);
 }
 //dispara a funcao recolhe para enviar ao banco de dados
-enviaBtn.addEventListener("click", edita);
-delBtn.addEventListener("click", deleta);
+enviaBtn.addEventListener("click", recolhe);
 
 
 

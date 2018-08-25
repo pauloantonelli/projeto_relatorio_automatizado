@@ -1,0 +1,10 @@
+@charset "utf8";
+/*barra de progresso*/
+#progressHoraAnual, #progressReviAnual, #progressRevAnual, #progressLivrAnual, #progressBroxAnual, #progressHoraMes, #progressReviMes, #progressRevMes, #progressLivrMes, #progressBroxMes{
+    width: 10%;
+    height: 20px;
+    background-color: red;
+    text-align: center;
+    line-height: 20px;
+    color: white;
+}
