@@ -130,19 +130,32 @@ function contaMetas(dadosNovos){
                 var finalAnoHors = y.indexOf('Revisitas');
                 var corteAnoHors = y.slice(inicioAnoHors, finalAnoHors);
                 //atualizacao hora
-                var elemHora = document.getElementById('progressHoraAnual');
-                var progresso = corteHors % corteAnoHors;
-                console.log(corteHors);
-                console.log(corteAnoHors);
-                console.log(parseInt(progresso));
+                var elemAnoHora = document.getElementById('progressHoraAnual');
+
+                //Calculo enorme para pegar a porcentagem certa
+                if(corteHors > corteAnoHors){
+                    var progresso = Number(corteHors) * 100 / Number(corteAnoHors);//calcula a porcentagem 1º do valor da meta, e 2º do valor cumprido!
+                    var barraHora = Math.round(progresso);//subtrai para achar quanto de 100 foi feito
+                    if(barraHora >= 100){
+                        var barraPositivo = 100;    
+                    }else{
+                        var barraPositivo = barraHora;
+                    }
+                }else if(corteAnoHors > corteHors){
+                    var progresso = Number(corteAnoHors) * 100 / Number(corteHors);//calcula a porcentagem 1º do valor da meta, e 2º do valor cumprido!
+                    var barraHora = 100 - Math.round(progresso);//subtrai para achar quanto de 100 foi feito
+                    var barraPositivo = Math.abs(barraHora);
+                }
+                var progressoWidth = 0;
                 var barra = setInterval(frame, 65);//seta o intervalo da funcao frame para 65 microsegundos
                 function frame() {
-                    if (corteHors < progresso) {
+                    if (progressoWidth >= barraPositivo){
                         clearInterval(barra);
                     }else{
-                        progresso++;
-                        elemHora.style.width = progresso + '%';
-                        elemHora.innerHTML = 'Progresso: ' + progresso * 1 + '%';
+                        progressoWidth++;
+                        elemAnoHora.style.width = progressoWidth + '%';
+                        //por o numero horas feitas em cima da barra
+                        elemAnoHora.innerHTML = progressoWidth * 1 + '%';
                     }
                 }
             }
@@ -151,19 +164,33 @@ function contaMetas(dadosNovos){
                 var y = idAno.value;
                 var inicioAnoRevi = y.indexOf('Revisitas pretendidas: ') + 23;
                 var finalAnoRevi = y.indexOf('Revistas');
-                var corteAnoRevi = y.slice(inicioAnoRevi, finalAnoRevi);
-                console.log(corteAnoRevi);
-                //atualizacao revisitas
-                var elemRevi = document.getElementById('progressReviAnual');
-                var progresso = corteAnoRevi;
+                var corteAnoRevi = y.slice(inicioAnoRevi, finalAnoRevi);                //atualizacao revisitas
+                var elemAnoRevi = document.getElementById('progressReviAnual');
+
+                //Calculo enorme para pegar a porcentagem certa
+                if(corteRevis > corteAnoRevi){
+                    var progresso = Number(corteRevis) * 100 / Number(corteAnoRevi);//calcula a porcentagem 1º do valor da meta, e 2º do valor cumprido!
+                    var barraHora = Math.round(progresso);//subtrai para achar quanto de 100 foi feito
+                    if(barraHora >= 100){
+                        var barraPositivo = 100;    
+                    }else{
+                        var barraPositivo = barraHora;
+                    }
+                }else if(corteAnoRevi > corteRevis){
+                    var progresso = Number(corteAnoRevi) * 100 / Number(corteRevis);//calcula a porcentagem 1º do valor da meta, e 2º do valor cumprido!
+                    var barraHora = 100 - Math.round(progresso);//subtrai para achar quanto de 100 foi feito
+                    var barraPositivo = Math.abs(barraHora);
+                }
+                var progressoWidth = 0;
                 var barra = setInterval(frame, 65);//seta o intervalo da funcao frame para 65 microsegundos
                 function frame() {
-                    if (progresso >= corteRevis) {
+                    if (progressoWidth >= barraPositivo){
                         clearInterval(barra);
-                    } else {
-                        progresso++;
-                        elemRevi.style.width = progresso + '%';
-                        elemRevi.innerHTML = 'Progresso: ' + progresso * 1 + '%';
+                    }else{
+                        progressoWidth++;
+                        elemAnoRevi.style.width = progressoWidth + '%';
+                        //por o numero horas feitas em cima da barra
+                        elemAnoRevi.innerHTML = progressoWidth * 1 + '%';
                     }
                 }
             }
@@ -173,18 +200,33 @@ function contaMetas(dadosNovos){
                 var inicioAnoRev = y.indexOf('Revistas pretendidas: ') + 22;
                 var finalAnoRev = y.indexOf('Livros');
                 var corteAnoRev = y.slice(inicioAnoRev, finalAnoRev);
-                console.log(corteAnoRev);
                 //atualizacao revistas
-                var elemRev = document.getElementById('progressRevAnual');
-                var progresso = corteAnoRev;
+                var elemAnoRev = document.getElementById('progressRevAnual');
+
+                //Calculo enorme para pegar a porcentagem certa
+                if(corteRev > corteAnoRev){
+                    var progresso = Number(corteRev) * 100 / Number(corteAnoRev);//calcula a porcentagem 1º do valor da meta, e 2º do valor cumprido!
+                    var barraHora = Math.round(progresso);//subtrai para achar quanto de 100 foi feito
+                    if(barraHora >= 100){
+                        var barraPositivo = 100;    
+                    }else{
+                        var barraPositivo = barraHora;
+                    }
+                }else if(corteAnoRev > corteRev){
+                    var progresso = Number(corteAnoRev) * 100 / Number(corteRev);//calcula a porcentagem 1º do valor da meta, e 2º do valor cumprido!
+                    var barraHora = 100 - Math.round(progresso);//subtrai para achar quanto de 100 foi feito
+                    var barraPositivo = Math.abs(barraHora);
+                }
+                var progressoWidth = 0;
                 var barra = setInterval(frame, 65);//seta o intervalo da funcao frame para 65 microsegundos
                 function frame() {
-                    if (progresso >= corteRev) {
+                    if (progressoWidth >= barraPositivo){
                         clearInterval(barra);
-                    } else {
-                        progresso++;
-                        elemRev.style.width = progresso + '%';
-                        elemRev.innerHTML = 'Progresso: ' + progresso * 1 + '%';
+                    }else{
+                        progressoWidth++;
+                        elemAnoRev.style.width = progressoWidth + '%';
+                        //por o numero horas feitas em cima da barra
+                        elemAnoRev.innerHTML = progressoWidth * 1 + '%';
                     }
                 }
             }
@@ -194,18 +236,33 @@ function contaMetas(dadosNovos){
                 var inicioAnoLivr = y.indexOf('Livros pretendidos: ') + 20;
                 var finalAnoLivr = y.indexOf('Broxuras');
                 var corteAnoLivr = y.slice(inicioAnoLivr, finalAnoLivr);
-                console.log(corteAnoLivr);
                 //atualizacao livros
-                var elemLivr = document.getElementById('progressLivrAnual');
-                var progresso = corteAnoLivr;
+                var elemAnoLivr = document.getElementById('progressLivrAnual');
+
+                //Calculo enorme para pegar a porcentagem certa
+                if(corteLivr > corteAnoLivr){
+                    var progresso = Number(corteLivr) * 100 / Number(corteAnoLivr);//calcula a porcentagem 1º do valor da meta, e 2º do valor cumprido!
+                    var barraHora = Math.round(progresso);//subtrai para achar quanto de 100 foi feito
+                    if(barraHora >= 100){
+                        var barraPositivo = 100;    
+                    }else{
+                        var barraPositivo = barraHora;
+                    }
+                }else if(corteAnoLivr > corteLivr){
+                    var progresso = Number(corteAnoLivr) * 100 / Number(corteLivr);//calcula a porcentagem 1º do valor da meta, e 2º do valor cumprido!
+                    var barraHora = 100 - Math.round(progresso);//subtrai para achar quanto de 100 foi feito
+                    var barraPositivo = Math.abs(barraHora);
+                }
+                var progressoWidth = 0;
                 var barra = setInterval(frame, 65);//seta o intervalo da funcao frame para 65 microsegundos
                 function frame() {
-                    if (progresso >= corteLivr) {
+                    if (progressoWidth >= barraPositivo){
                         clearInterval(barra);
-                    } else {
-                        progresso++;
-                        elemLivr.style.width = progresso + '%';
-                        elemLivr.innerHTML = 'Progresso: ' + progresso * 1 + '%';
+                    }else{
+                        progressoWidth++;
+                        elemAnoLivr.style.width = progressoWidth + '%';
+                        //por o numero horas feitas em cima da barra
+                        elemAnoLivr.innerHTML = progressoWidth * 1 + '%';
                     }
                 }
             }
@@ -215,18 +272,33 @@ function contaMetas(dadosNovos){
                 var inicioAnoBrox = y.indexOf('Broxuras pretendidas: ') + 22;
                 var finalAnoBrox = y.length;
                 var corteAnoBrox = y.slice(inicioAnoBrox, finalAnoBrox);
-                console.log(corteAnoBrox);
                 //atualizacao broxuras
-                var elemBrox = document.getElementById('progressBroxAnual');
-                var progresso = corteAnoBrox;
+                var elemAnoBrox = document.getElementById('progressBroxAnual');
+
+                //Calculo enorme para pegar a porcentagem certa
+                if(corteBrox > corteAnoBrox){
+                    var progresso = Number(corteBrox) * 100 / Number(corteAnoBrox);//calcula a porcentagem 1º do valor da meta, e 2º do valor cumprido!
+                    var barraHora = Math.round(progresso);//subtrai para achar quanto de 100 foi feito
+                    if(barraHora >= 100){
+                        var barraPositivo = 100;    
+                    }else{
+                        var barraPositivo = barraHora;
+                    }
+                }else if(corteAnoBrox > corteBrox){
+                    var progresso = Number(corteAnoBrox) * 100 / Number(corteBrox);//calcula a porcentagem 1º do valor da meta, e 2º do valor cumprido!
+                    var barraHora = 100 - Math.round(progresso);//subtrai para achar quanto de 100 foi feito
+                    var barraPositivo = Math.abs(barraHora);
+                }
+                var progressoWidth = 0;
                 var barra = setInterval(frame, 65);//seta o intervalo da funcao frame para 65 microsegundos
                 function frame() {
-                    if (progresso >= corteBrox) {
+                    if (progressoWidth >= barraPositivo){
                         clearInterval(barra);
-                    } else {
-                        progresso++;
-                        elemBrox.style.width = progresso + '%';
-                        elemBrox.innerHTML = 'Progresso: ' + progresso * 1 + '%';
+                    }else{
+                        progressoWidth++;
+                        elemAnoBrox.style.width = progressoWidth + '%';
+                        //por o numero horas feitas em cima da barra
+                        elemAnoBrox.innerHTML = progressoWidth * 1 + '%';
                     }
                 }
             }

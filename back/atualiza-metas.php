@@ -7,7 +7,7 @@ mysqli_select_db($conectMeses,"metaMensal");
 $conectAno = mysqli_connect('mysql.hostinger.com.br','u613824788_cidin','fgli4545','u613824788_relat');
 mysqli_select_db($conectAno,"metaAnual");
 
-//atualizacao dos dados existentes
+//atualizacao dos dados existentes dos meses
 $idMes = $_GET['idMes'];
 $mes = $_GET['mes'];
 $horas = $_GET['horas'];
@@ -15,14 +15,19 @@ $revisitas = $_GET['revisitas'];
 $revistas = $_GET['revistas'];
 $livros = $_GET['livros'];
 $broxuras = $_GET['broxuras'];
-//UPDATE `metaMensal` SET `hora` = '15', `revisista` = '55', `revista` = '55', `livro` = '85', `broxura` = '85' WHERE `metaMensal`.`idMes` = 1;
-mysqli_query($conectMeses, "UPDATE `metaMensal` SET `hora`='{$horas}', `revisita`='{$revisitas}', `revista`='{$revistas}', `livro`='{$livros}', `broxura`='{$broxuras}' WHERE `metaMensal`.`idMes`='{$idMes}'");
+//atualizacao dos dados existentes dos ano
+$metaAnualHors = $_GET['metaAnualHors'];
+$metaAnualRevis = $_GET['metaAnualRevis'];
+$metaAnualRevs = $_GET['metaAnualRevis'];
+$metaAnualLivrs = $_GET['metaAnualLivrs'];
+$metaAnualBroxs = $_GET['metaAnualBroxs'];
 
 //colocar o ano atual no banco automaticamente.
-mysqli_query($conectAno, "UPDATE `metaAnual` SET `idAno` = 2018, `hora` = '5', `revisita` = '6', `revista` = '7', `livro` = '8', `broxura` = '9' WHERE (`idAno` = 2018)");
+mysqli_query($conectMeses, "UPDATE `metaMensal` SET `idMes`='{$idMes}',`mes`='{$mes}',`hora`='{$horas}', `revisita`='{$revisitas}', `revista`='{$revistas}', `livro`='{$livros}', `broxura`='{$broxuras}' WHERE `idMes`='{$idMes}'");
 
-mysqli_close($conectMeses);
-mysqli_close($conectAno);
+//colocar o ano atual no banco automaticamente.
+mysqli_query($conectAno, "UPDATE `metaAnual` SET `idAno` = 2018, `hora` = '{$metaAnualHors}', `revisita` = '{$metaAnualRevis}', `revista` = '{$metaAnualRevs}', `livro` = '{$metaAnualLivrs}', `broxura` = '{$metaAnualBroxs}' WHERE (`idAno` = 2018)");
+
 //header("location:javascript://history.go(-1)");
 //echo "<script> window.sessionStorage.setItem('pagina','atualiza-metas'); </script>";
 echo "<meta http-equiv='refresh' content='0000;URL=../../front/atualizacao-metas.php'>";

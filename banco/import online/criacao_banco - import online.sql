@@ -1,9 +1,3 @@
-create database relatorio
-default character set utf8
-default collate utf8_general_ci;
-
-use relatorio;
-
 create table if not exists pessoa(
     id int not null,
     nome varchar(255) not null,
@@ -51,7 +45,6 @@ create table if not exists metaAnual(
 
 create table if not exists metaMensal(
 	idMes int(12) not null auto_increment,
-    mes varchar(10),
     hora int not null default '1',
     revisista int not null default '1',
     revista int not null default '1',

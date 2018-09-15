@@ -11,29 +11,29 @@ function dadosMensal(opcao) {
         var mes = "";
         if (x) {
             switch(corteMes){
-                case 1 : mes = "Janeiro";
+                case 1 : mes = "Progresso de Janeiro";
                 break;
-                case 2 : mes = "Fevereiro";
+                case 2 : mes = "Progresso de Fevereiro";
                 break;
-                case 3 : mes = "Março";
+                case 3 : mes = "Progresso de Março";
                 break;
-                case 4 : mes = "Abril";
+                case 4 : mes = "Progresso de Abril";
                 break;
-                case 5 : mes = "Maio";
+                case 5 : mes = "Progresso de Maio";
                 break;
-                case 6 : mes = "Junho";
+                case 6 : mes = "Progresso de Junho";
                 break;
-                case 7 : mes = "Julho";
+                case 7 : mes = "Progresso de Julho";
                 break;
-                case 8 : mes = "Agosto";
+                case 8 : mes = "Progresso de Agosto";
                 break;
-                case 9 : mes = "Setembro";
+                case 9 : mes = "Progresso de Setembro";
                 break;
-                case 10 : mes = "Outubro";
+                case 10 : mes = "Progresso de Outubro";
                 break;
-                case 11 : mes = "Novembro";
+                case 11 : mes = "Progresso de Novembro";
                 break;
-                case 12 : mes = "Dezembro";
+                case 12 : mes = "Progresso de Dezembro";
                 break;
             }
             document.getElementById("metaDoMes").style.display = "block";
@@ -159,24 +159,31 @@ function contaMetas(dadosNovos){
                 var corteMesHors = y.slice(inicioMesHors, finalMesHors);
                 //atualizacao hora
                 var elemHora = document.getElementById('progressHoraMes');
+                
+                //Calculo enorme para pegar a porcentagem certa
                 if(corteHors > corteMesHors){
-                    var progresso = (corteHors * corteMesHors) / 100;
-                }else{
-                    var progresso = (corteMesHors * corteHors) / 100;
+                    var progresso = Number(corteHors) * 100 / Number(corteMesHors);//calcula a porcentagem 1º do valor da meta, e 2º do valor cumprido!
+                    var barraHora = Math.round(progresso);//subtrai para achar quanto de 100 foi feito
+                    if(barraHora >= 100){
+                        var barraHoraPositivo = 100;    
+                    }else{
+                        var barraHoraPositivo = barraHora;
+                    }
+                }else if(corteMesHors > corteHors){
+                    var progresso = Number(corteMesHors) * 100 / Number(corteHors);//calcula a porcentagem 1º do valor da meta, e 2º do valor cumprido!
+                    var barraHora = 100 - Math.round(progresso);//subtrai para achar quanto de 100 foi feito
+                    var barraHoraPositivo = Math.abs(barraHora);
                 }
-                progressoWidth = 0;
-                console.log(corteHors);
-                console.log(corteMesHors);
-                console.log(progresso);
+                var progressoWidth = 0;
                 var barra = setInterval(frame, 65);//seta o intervalo da funcao frame para 65 microsegundos
                 function frame() {
-                    if (progressoWidth >= corteHors) {
+                    if (progressoWidth >= barraHoraPositivo){
                         clearInterval(barra);
                     }else{
-                        progresso++;
                         progressoWidth++;
                         elemHora.style.width = progressoWidth + '%';
-                        elemHora.innerHTML = 'Progresso: ' + progresso * 1 + '%';
+                        //por o numero horas feitas em cima da barra
+                        elemHora.innerHTML = progressoWidth * 1 + '%';
                     }
                 }
             }
@@ -186,18 +193,32 @@ function contaMetas(dadosNovos){
                 var inicioMesRevi = y.indexOf('Revisitas pretendidas: ') + 23;
                 var finalMesRevi = y.indexOf('Revistas');
                 var corteMesRevi = y.slice(inicioMesRevi, finalMesRevi);
-                console.log(corteMesRevi);
                 //atualizacao revisitas
                 var elemRevi = document.getElementById('progressReviMes');
-                var progresso = corteMesRevi;
+
+                //Calculo enorme para pegar a porcentagem certa
+                if(corteRevis > corteMesRevi){
+                    var progresso = Number(corteRevis) * 100 / Number(corteMesRevi);//calcula a porcentagem 1º do valor da meta, e 2º do valor cumprido!
+                    var barraHora = Math.round(progresso);//subtrai para achar quanto de 100 foi feito
+                    if(barraHora >= 100){
+                        var barraPositivo = 100;    
+                    }else{
+                        var barraPositivo = barraHora;
+                    }
+                }else if(corteMesRevi > corteRevis){
+                    var progresso = Number(corteMesRevi) * 100 / Number(corteRevis);//calcula a porcentagem 1º do valor da meta, e 2º do valor cumprido!
+                    var barraHora = 100 - Math.round(progresso);//subtrai para achar quanto de 100 foi feito
+                    var barraPositivo = Math.abs(barraHora);
+                }
+                var progressoWidth = 0;
                 var barra = setInterval(frame, 65);//seta o intervalo da funcao frame para 65 microsegundos
                 function frame() {
-                    if (progresso >= corteRevis) {
+                    if (progressoWidth >= barraPositivo){
                         clearInterval(barra);
-                    } else {
-                        progresso++;
-                        elemRevi.style.width = progresso + '%';
-                        elemRevi.innerHTML = 'Progresso: ' + progresso * 1 + '%';
+                    }else{
+                        progressoWidth++;
+                        elemRevi.style.width = progressoWidth + '%';
+                        elemRevi.innerHTML = progressoWidth * 1 + '%';
                     }
                 }
             }
@@ -207,18 +228,32 @@ function contaMetas(dadosNovos){
                 var inicioMesRev = y.indexOf('Revistas pretendidas: ') + 22;
                 var finalMesRev = y.indexOf('Livros');
                 var corteMesRev = y.slice(inicioMesRev, finalMesRev);
-                console.log(corteMesRev);
                 //atualizacao revistas
                 var elemRev = document.getElementById('progressRevMes');
-                var progresso = corteMesRev;
+
+                //Calculo enorme para pegar a porcentagem certa
+                if(corteRev > corteMesRev){
+                    var progresso = Number(corteRev) * 100 / Number(corteMesRev);//calcula a porcentagem 1º do valor da meta, e 2º do valor cumprido!
+                    var barraHora = Math.round(progresso);//subtrai para achar quanto de 100 foi feito
+                    if(barraHora >= 100){
+                        var barraPositivo = 100;    
+                    }else{
+                        var barraPositivo = barraHora;
+                    }
+                }else if(corteMesRev > corteRev){
+                    var progresso = Number(corteMesRev) * 100 / Number(corteRev);//calcula a porcentagem 1º do valor da meta, e 2º do valor cumprido!
+                    var barraHora = 100 - Math.round(progresso);//subtrai para achar quanto de 100 foi feito
+                    var barraPositivo = Math.abs(barraHora);
+                }
+                var progressoWidth = 0;
                 var barra = setInterval(frame, 65);//seta o intervalo da funcao frame para 65 microsegundos
                 function frame() {
-                    if (progresso >= corteRev) {
+                    if (progressoWidth >= barraPositivo){
                         clearInterval(barra);
-                    } else {
-                        progresso++;
-                        elemRev.style.width = progresso + '%';
-                        elemRev.innerHTML = 'Progresso: ' + progresso * 1 + '%';
+                    }else{
+                        progressoWidth++;
+                        elemRev.style.width = progressoWidth + '%';
+                        elemRev.innerHTML = progressoWidth * 1 + '%';
                     }
                 }
             }
@@ -228,18 +263,32 @@ function contaMetas(dadosNovos){
                 var inicioMesLivr = y.indexOf('Livros pretendidos: ') + 20;
                 var finalMesLivr = y.indexOf('Broxuras');
                 var corteMesLivr = y.slice(inicioMesLivr, finalMesLivr);
-                console.log(corteMesLivr);
                 //atualizacao livros
                 var elemLivr = document.getElementById('progressLivrMes');
-                var progresso = corteMesLivr;
+
+                //Calculo enorme para pegar a porcentagem certa
+                if(corteLivr > corteMesLivr){
+                    var progresso = Number(corteLivr) * 100 / Number(corteMesLivr);//calcula a porcentagem 1º do valor da meta, e 2º do valor cumprido!
+                    var barraHora = Math.round(progresso);//subtrai para achar quanto de 100 foi feito
+                    if(barraHora >= 100){
+                        var barraPositivo = 100;    
+                    }else{
+                        var barraPositivo = barraHora;
+                    }
+                }else if(corteMesLivr > corteLivr){
+                    var progresso = Number(corteMesLivr) * 100 / Number(corteLivr);//calcula a porcentagem 1º do valor da meta, e 2º do valor cumprido!
+                    var barraHora = 100 - Math.round(progresso);//subtrai para achar quanto de 100 foi feito
+                    var barraPositivo = Math.abs(barraHora);
+                }
+                var progressoWidth = 0;
                 var barra = setInterval(frame, 65);//seta o intervalo da funcao frame para 65 microsegundos
                 function frame() {
-                    if (progresso >= corteLivr) {
+                    if (progressoWidth >= barraPositivo){
                         clearInterval(barra);
-                    } else {
-                        progresso++;
-                        elemLivr.style.width = progresso + '%';
-                        elemLivr.innerHTML = 'Progresso: ' + progresso * 1 + '%';
+                    }else{
+                        progressoWidth++;
+                        elemLivr.style.width = progressoWidth + '%';
+                        elemLivr.innerHTML = progressoWidth * 1 + '%';
                     }
                 }
             }
@@ -249,18 +298,33 @@ function contaMetas(dadosNovos){
                 var inicioMesBrox = y.indexOf('Broxuras pretendidas: ') + 22;
                 var finalMesBrox = y.length;
                 var corteMesBrox = y.slice(inicioMesBrox, finalMesBrox);
-                console.log(corteMesBrox);
                 //atualizacao broxuras
                 var elemBrox = document.getElementById('progressBroxMes');
-                var progresso = corteMesBrox;
+
+                //Calculo enorme para pegar a porcentagem certa
+                if(corteBrox > corteMesBrox){
+                    var progresso = Number(corteBrox) * 100 / Number(corteMesBrox);//calcula a porcentagem 1º do valor da meta, e 2º do valor cumprido!
+                    var barraHora = Math.round(progresso);//subtrai para achar quanto de 100 foi feito
+                    if(barraHora >= 100){
+                        var barraPositivo = 100;    
+                    }else{
+                        var barraPositivo = barraHora;
+                    }
+                }else if(corteMesBrox > corteBrox){
+                    var progresso = Number(corteMesBrox) * 100 / Number(corteBrox);//calcula a porcentagem 1º do valor da meta, e 2º do valor cumprido!
+                    var barraHora = 100 - Math.round(progresso);//subtrai para achar quanto de 100 foi feito
+                    var barraPositivo = Math.abs(barraHora);
+                    console.log(barraPositivo);
+                }
+                var progressoWidth = 0;
                 var barra = setInterval(frame, 65);//seta o intervalo da funcao frame para 65 microsegundos
                 function frame() {
-                    if (progresso >= corteBrox) {
+                    if (progressoWidth >= barraPositivo){
                         clearInterval(barra);
-                    } else {
-                        progresso++;
-                        elemBrox.style.width = progresso + '%';
-                        elemBrox.innerHTML = 'Progresso: ' + progresso * 1 + '%';
+                    }else{
+                        progressoWidth++;
+                        elemBrox.style.width = progressoWidth + '%';
+                        elemBrox.innerHTML = progressoWidth * 1 + '%';
                     }
                 }
             }

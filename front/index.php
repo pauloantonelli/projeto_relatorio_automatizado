@@ -18,7 +18,7 @@ mysqli_select_db($conectPessoa,"pessoa");
 //conexao com entrada
 $conectEntrada = mysqli_connect('localhost','root','','relatorio');
 mysqli_select_db($conectEntrada,"entrada");
-//conexao com soma
+//conexao com soma entrada
 $conectSoma = mysqli_connect('localhost','root','','relatorio');
 mysqli_select_db($conectSoma,"entrada");
 //conexao estudantes
@@ -33,6 +33,7 @@ $queryEntrada = mysqli_query($conectEntrada, "SELECT * FROM entrada");
 //criar query com soma para retornar os valores direto do banco somados
 $querySoma = mysqli_query($conectSoma, "SELECT sum(horas), sum(minutos), sum(revisitas), sum(revistas), sum(livros), sum(broxuras) 
 FROM entrada WHERE YEAR(dia) = $ano AND MONTH(dia) = $mes;");
+
 //query com soma para retornar os valores direto do banco somados
 $queryEstudante = mysqli_query($conectSoma, "SELECT count(nome) FROM pessoa;");
 

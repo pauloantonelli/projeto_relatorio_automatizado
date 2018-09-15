@@ -62,9 +62,19 @@
 
     <section class="atualiza-metas">
         <?php 
+        $ano = date("Y", time());
+
         $conectId = mysqli_connect('localhost','root','','relatorio');
         mysqli_select_db($conectId,"metamensal");
         $queryId = mysqli_query($conectId, "SELECT * FROM metamensal");
+        
+        //conecta para fazer a atualizacao de entrada
+        $conectAno = mysqli_connect('localhost','root','','relatorio');
+        mysqli_select_db($conectAno,"metamensal");
+
+        //criar query com soma para retornar os valores direto do banco somados
+        $queryAno = mysqli_query($conectAno, "SELECT sum(horas), sum(minutos), sum(revisitas), sum(revistas), sum(livros), sum(broxuras) 
+        FROM entrada WHERE YEAR(dia) = $ano;");
         ?>
         <h1>Atualizar metas</h1>
         <!--Inicio formulario mes-->
@@ -76,6 +86,17 @@
                 <option form="atualizacao" id="optSelect" value="<?php echo "id".$mesId['idMes']."mes".$mesId['mes']."hora".$mesId['hora']."revisita".$mesId['revisita']."revista".$mesId['revista']."livro".$mesId['livro']."broxura".$mesId['broxura']?>"><?php echo $mesId['mes']?></option>
             <?php } ?>
         </select>
+            <div>
+            <?php while($metaAno = mysqli_fetch_array($queryAno)) { ?>
+                <option form="atualizacao" id="optAno" value="<?php echo "horas".$metaAno['sum(horas)']."minutos".$metaAno['sum(minutos)']."revisitas".$metaAno['sum(revisitas)']."revistas".$metaAno['sum(revistas)']."livros".$metaAno['sum(livros)']."broxuras".$metaAno['sum(broxuras)']?>"><?php echo $mesId['mes']?></option>
+            <?php } ?>
+            <input type="hidden" id="metaAnualHor" name="metaAnualHors" form="atualizacao"/>
+            <input type="hidden" id="metaAnualRevi" name="metaAnualRevis" form="atualizacao"/>
+            <input type="hidden" id="metaAnualRev" name="metaAnualRevs" form="atualizacao"/>
+            <input type="hidden" id="metaAnualLivr" name="metaAnualLivrs" form="atualizacao"/>
+            <input type="hidden" id="metaAnualBrox" name="metaAnualBroxs" form="atualizacao"/>
+            </div>
+
             <input type="hidden" id="id" name="idMes" form="atualizacao"/>
             <input type="hidden" id="mes" name="mes" form="atualizacao"/>
             <br/>
@@ -99,6 +120,7 @@
             <input type="number" id="broxura" name="broxuras" form="atualizacao" value="1"/>
             <div id="msgBrox">Atenção defina pelo menos 1 broxura como alvo</div>
             <br/>
+
             <form id="atualizacao" method="GET" action="../back/controle/atualiza-metas.php">
                 <input class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit" id="envia" value="Enviar!"/>
             </form>

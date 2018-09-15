@@ -1,5 +1,5 @@
 <?php 
-$conect = mysqli_connect('localhost','root','','relatorio');
+$conect = mysqli_connect('mysql.hostinger.com.br','u613824788_cidin','fgli4545','u613824788_relat');
 mysqli_select_db($conect,"entrada");
 ?>
 <?php
@@ -14,8 +14,9 @@ $broxuras = $_GET['broxuras'];
 $obs = $_GET['observacoes'];
 
 //insercao de dados novos
-mysqli_query($conect, "INSERT INTO `relatorio`.`entrada` (`idDia`, `dia`, `horas`, `minutos`, `revisitas`, `revistas`, `livros`, `broxuras`, `observacoes`) values ('{$id}','{$dia}','{$horas}','{$minutos}','{$revisitas}','{$revistas}', '{$livros}','{$broxuras}','{$obs}')");
+mysqli_query($conect, "INSERT into entrada values ('{$id}','{$dia}','{$horas}','{$minutos}','{$revisitas}','{$revistas}', '{$livros}','{$broxuras}','{$obs}')");
 
+mysqli_close($conect);
 header("location:javascript://history.go(-1)");
 echo "<script> window.sessionStorage.setItem('pagina','sim'); </script>";
 //header("location:javascript://window.sessionStorage.setItem('enviou','sim')");

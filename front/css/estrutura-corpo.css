@@ -9,19 +9,19 @@
     border-style: solid;
     border-width: 2px;
     border-color: #293475;
+    font-size: 1.4rem;
 }
 .relatorio-resumido h1{
     width: 100%;
     text-align: center;
     font-weight: bold;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     width: 100%;
     color: white;
 }
 div.nomeRelatorio{
     width: 100%;
     text-align: center;
-    font-size: 1.3rem;
     color: white;
     margin-bottom: 10px;
 }
@@ -33,7 +33,6 @@ div.divRel{
     width: 50%;
     color: white;
     text-align: center;
-    font-size: 1rem;
     margin: 1px;
     padding: 1px;
     border-style: solid;
@@ -44,7 +43,6 @@ div.divRel{
     width: 50%;
     color: white;
     text-align: center;
-    font-size: 1rem;
     margin: 1px;
     padding: 1px;
     border-style: solid;
@@ -69,7 +67,7 @@ div.divRel{
 div.results{
     color: white;
     text-align: center;
-    font-size: 1.1rem;
+    font-size: 1.4rem;
     margin: 5px;
 }
 div.apoio_fundo{
@@ -84,6 +82,7 @@ div.apoio_fundo{
     margin: 0 10%;
     text-align: center;
     font-weight: bold;
+    font-size: 1.3rem;
     color: white;
 }
 .mdl-layout__content{
@@ -101,12 +100,16 @@ div.apoio_fundo{
     justify-content: center;
     align-items: center;
     text-align: center;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
 }
 .diario #msg{
     color: white;
     background-color: red;
     margin: 5px;
+}
+#diaPadrao, #diaEscolhido, #hora, #minuto, #revisita, #revista, #livro, #broxura, #ob, #observacao, #nomeEditar, #pessoa, #nomePessoa, #apelido, #escolhaEstudante, #anualMeta, #mensalMeta, #escolhaDia, #escolhaMes{
+    height: 3rem;
+    font-size: 1.4rem;
 }
 .diario input, label, #msg, #observacao{
     margin: 0 10%;
@@ -120,9 +123,9 @@ div.apoio_fundo{
     background-color: red;
     margin: 5px;
 }
-.diario #envia{
-    margin: 0 10%;
-    padding: 0 100px;
+#envia, #edita, #delet{
+    width: 80%;
+    padding: 0;
 }
 .mdl-layout__content{
     background-color: #3f51b5;

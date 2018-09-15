@@ -1,11 +1,11 @@
 <?php
 //conexao com banco
-$conect = mysqli_connect('localhost','root','','relatorio');
+$conect = mysqli_connect('mysql.hostinger.com.br','u613824788_cidin','fgli4545','u613824788_relat');
 mysqli_select_db($conect,"regPessoa");
-$conectPess = mysqli_connect('localhost','root','','relatorio');
+$conectPess = mysqli_connect('mysql.hostinger.com.br','u613824788_cidin','fgli4545','u613824788_relat');
 mysqli_select_db($conectPess,"pessoa");
 //consulta o ultimo id criado
-$conectIDs = mysqli_connect('localhost','root','','relatorio');
+$conectIDs = mysqli_connect('mysql.hostinger.com.br','u613824788_cidin','fgli4545','u613824788_relat');
 mysqli_select_db($conectIDs,"pessoa");
 
 //definicoes
@@ -27,16 +27,29 @@ if($novoEstudante){
     //cadastro novo estudante
     mysqli_query($conectPess, "INSERT into pessoa (id, nome, apelido) values ('{$idPessoa}','{$novoEstudante}','{$apelido}')");
     //registro novo de estudante novo
-    mysqli_query($conect, "INSERT INTO regpessoa (id, idPessoa, dia, horasPessoa, minutosPessoa, revisitasPessoa, revistasPessoa, livrosPessoa, broxurasPessoa, observacoes) values ('{$idTransacaoNovoEstudante}','{$idPessoa}','{$dia}','{$hora}','{$minuto}','{$revisita}','{$revista}','{$livro}','{$broxura}','{$obs}')");
+    mysqli_query($conect, "INSERT into regPessoa (id, idPessoa, dia, horasPessoa, minutosPessoa, revisitasPessoa, revistasPessoa, livrosPessoa, broxurasPessoa, observacoes) values ('{$idTransacaoNovoEstudante}','{$idPessoa}','{$dia}','{$hora}','{$minuto}','{$revisita}','{$revista}','{$livro}','{$broxura}','{$obs}')");
 }else{
     //registro novo de estudante antigo
-    mysqli_query($conect, "INSERT INTO regpessoa (id, idPessoa, dia, horasPessoa, minutosPessoa, revisitasPessoa, revistasPessoa, livrosPessoa, broxurasPessoa, observacoes) values ('default','{$idPessoa}','{$dia}','{$hora}','{$minuto}','{$revisita}','{$revista}','{$livro}','{$broxura}','{$obs}')");   
-    mysqli_query($conectPess, "UPDATE `relatorio`.`pessoa` SET `nome` = '{$nomePessoa}', `apelido` = '{$apelido}' WHERE (`id` = '{$idPessoa}')");
+    mysqli_query($conect, "INSERT into regPessoa (id, idPessoa, dia, horasPessoa, minutosPessoa, revisitasPessoa, revistasPessoa, livrosPessoa, broxurasPessoa, observacoes) values ('default','{$idPessoa}','{$dia}','{$hora}','{$minuto}','{$revisita}','{$revista}','{$livro}','{$broxura}','{$obs}')");   
+    mysqli_query($conectPess, "UPDATE  `pessoa` SET `nome` = '{$nomePessoa}', `apelido` = '{$apelido}' WHERE (`id` = '{$idPessoa}')");
 }
 
-
-header("location:javascript://history.go(-1)");
+mysqli_close($conect);
+mysqli_close($conectPess);
+mysqli_close($conectIDs);
+//header("location:javascript://history.go(-1)");
 echo "<script> window.sessionStorage.setItem('enviou','sim'); </script>";
-//header("location:javascript://window.sessionStorage.setItem('enviou','sim')");
 echo "<script> window.sessionStorage.getItem('enviou'); </script>";
+echo "<meta http-equiv='refresh' content='0000;URL=../../front/cadastro-estudante.php'>";
+//header("location:javascript://window.sessionStorage.setItem('enviou','sim')");
 ?>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body style="background-color: #3f51b5;">
+</body>
+</html>

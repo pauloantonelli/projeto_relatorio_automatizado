@@ -1,6 +1,6 @@
 <?php
 //conexao com banco
-$conect = mysqli_connect('localhost','root','','relatorio');
+$conect = mysqli_connect('mysql.hostinger.com.br','u613824788_cidin','fgli4545','u613824788_relat');
 mysqli_select_db($conect,"pessoa");
 
 //definicoes anuais
@@ -23,12 +23,13 @@ $broxuraMensal = $_GET['mensalBroxuras'] ?? 1;
 mysqli_query($conect, "INSERT INTO metaAnual (idAno, hora, revisita, revista, livro, broxura) values ('{$ano}','{$horaAnual}','{$revisitasAnual}','{$revistasAnual}','{$livroAnual}','{$broxuraAnual}')");
 
 //atualizando metas anuais
-mysqli_query($conect, "UPDATE `relatorio`.`metaAnual` SET `hora`='{$horaAnual}', `revisita`='{$revisitasAnual}', `revista`='{$revistasAnual}', `livro`='{$livroAnual}', `broxura`='{$livroAnual}' WHERE `idAno`='{$ano}'");
+mysqli_query($conect, "UPDATE  `metaAnual` SET `hora`='{$horaAnual}', `revisita`='{$revisitasAnual}', `revista`='{$revistasAnual}', `livro`='{$livroAnual}', `broxura`='{$livroAnual}' WHERE `idAno`='{$ano}'");
 
 //cadastro novas metas mensais
 mysqli_query($conect, "INSERT INTO metaMensal (idMes, hora, revisita, revista, livro, broxura) values ('{$mes}','{$horaMensal}','{$revistasMensal}','{$revistasMensal}','{$livroMensal}','{$broxuraMensal}')");
 
 //atualizando metas mensais
-mysqli_query($conect, "UPDATE `relatorio`.`metaMensal` SET `hora`='{$horaMensal}', `revisita`='{$revisitasMensal}', `revista`='{$revistasMensal}', `livro`='{$livroMensal}', `broxura`='{$broxuraMensal}' WHERE `idMes`='{$mes}'");
+mysqli_query($conect, "UPDATE  `metaMensal` SET `hora`='{$horaMensal}', `revisita`='{$revisitasMensal}', `revista`='{$revistasMensal}', `livro`='{$livroMensal}', `broxura`='{$broxuraMensal}' WHERE `idMes`='{$mes}'");
 
+mysqli_close($conect);
 ?>

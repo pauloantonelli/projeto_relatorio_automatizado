@@ -1,15 +1,15 @@
 <?php
 //conexao com meta anual /
-$conectAnual = mysqli_connect('localhost','root','','relatorio');
+$conectAnual = mysqli_connect('mysql.hostinger.com.br','u613824788_cidin','fgli4545','u613824788_relat');
 mysqli_select_db($conectAnual,"metaanual");
 //conexao com meta mensal
-$conectMensal = mysqli_connect('localhost','root','','relatorio');
+$conectMensal = mysqli_connect('mysql.hostinger.com.br','u613824788_cidin','fgli4545','u613824788_relat');
 mysqli_select_db($conectMensal,"metamensal");
 //conexao com pessoa
-$conectPessoa = mysqli_connect('localhost','root','','relatorio');
+$conectPessoa = mysqli_connect('mysql.hostinger.com.br','u613824788_cidin','fgli4545','u613824788_relat');
 mysqli_select_db($conectPessoa,"pessoa");
 //conexao com entrada
-$conectEntrada = mysqli_connect('localhost','root','','relatorio');
+$conectEntrada = mysqli_connect('mysql.hostinger.com.br','u613824788_cidin','fgli4545','u613824788_relat');
 mysqli_select_db($conectEntrada,"entrada");
 
 //seleciona os dados da meta anual

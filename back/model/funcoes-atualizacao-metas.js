@@ -146,6 +146,40 @@ function recolhe(){
 //dispara a funcao recolhe para enviar ao banco de dados
 enviaBtn.addEventListener("click", recolhe);
 
+//funcao captura os dados gerais do ano para preencher as metas
+var optSelect = document.getElementById('optAno');
+totMetaAnual(optSelect)
+function totMetaAnual(opcao) {
+    setTimeout(function () {
+        var x = opcao.value;
+        //horas
+        var inicioID = x.indexOf("oras")+4;
+        var finalID = x.indexOf("minutos");
+        var corteID = x.slice(inicioID, finalID);
+        document.getElementById('metaAnualHor').value = corteID;
+        //revisitas
+        var inicioHr = x.indexOf("itas")+4;
+        var finalHr = x.indexOf("revistas");
+        var corteHr = x.slice(inicioHr, finalHr);
+        document.getElementById("metaAnualRevi").value = corteHr; 
+        //revistas
+        var inicioRevi = x.indexOf("stas")+4;
+        var finalRevi = x.indexOf("livros");
+        var corteRevi = x.slice(inicioRevi, finalRevi);
+        document.getElementById("metaAnualRev").value = corteRevi; 
+        //livros
+        var inicioRev = x.indexOf("vros")+4;
+        var finalRev = x.indexOf("broxuras");
+        var corteRev = x.slice(inicioRev, finalRev);
+        document.getElementById("metaAnualLivr").value = corteRev; 
+        //broxuras
+        var inicioBrox = x.indexOf("uras")+4;
+        var finalBrox = x.length;
+        var corteBrox = x.slice(inicioBrox, finalBrox);
+        document.getElementById("metaAnualBrox").value = corteBrox; 
+    }), 1000;
+}
+
 
 
 

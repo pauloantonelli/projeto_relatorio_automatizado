@@ -19,18 +19,18 @@ update metaAnual set idAno = '18' where idAno limit 1;
 
 /*insercao de dados nas metas mensais*/
 insert into metaMensal values
-(default,'Janeiro','10','00','5','8','3'),
-(default,'Fevereiro','10','00','5','8','3'),
-(default,'Marco','10','00','5','8','3'),
-(default,'Abril','10','00','5','8','3'),
-(default,'Maio','10','00','5','8','3'),
-(default,'Junho','10','00','5','8','3'),
-(default,'Julho','10','00','5','8','3'),
-(default,'Agosto','10','00','5','8','3'),
-(default,'Setembro','10','00','5','8','3'),
-(default,'Outubro','10','00','5','8','3'),
-(default,'Novembro','10','00','5','8','3'),
-(default,'Dezembro','10','00','5','8','3');
+(default,'Janeiro','10','00','5','8','8'),
+(default,'Fevereiro','10','00','5','8','8'),
+(default,'Marco','10','00','5','8','8'),
+(default,'Abril','10','00','5','8','8'),
+(default,'Maio','10','00','5','8','8'),
+(default,'Junho','10','00','5','8','8'),
+(default,'Julho','10','00','5','8','8'),
+(default,'Agosto','10','00','5','8','8'),
+(default,'Setembro','10','00','5','8','8'),
+(default,'Outubro','10','00','5','8','8'),
+(default,'Novembro','10','00','5','8','8'),
+(default,'Dezembro','10','00','5','8','8');
 update metaMensal set idmes = '1' where idmes limit 12;
 
 alter table metamensal add column mes varchar(10) not null after idMes;
